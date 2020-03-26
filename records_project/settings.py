@@ -38,9 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 3rd party
+    'crispy_forms',
+
     # Local
     'users.apps.UsersConfig',
     'challenges.apps.ChallengesConfig',
+    'mybulmatags.apps.MybulmatagsConfig',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +129,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+# for referencing files with a URL
 STATIC_URL = '/static/'
+# where to find static files when local
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+# location of satatic files for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# how Django should look for static file directories; below is default
+STATICFILES_FINDERS = [
+    # defaults
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
+CRISPY_TEMPLATE_PACK = 'bulma'

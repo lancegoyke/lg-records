@@ -1,5 +1,6 @@
 {% extends '_base.html' %}
 
+{% load static %}
 
 {% block title %}
     Home
@@ -7,7 +8,19 @@
 
 
 {% block content %}
-    <h1>Homepage</h1>
-    <p>This file is from the project-level templates folder.</p>
+    <h1 class="title">Records</h1>
+    <p class="subtitle">Time to set some <strong>records!</strong></p>
+
+    <img class="cover-photo" src="{% static 'images/LANCENEONGREEN-blank.jpg' %}" alt="A headshot of Lance">
+    
+    {% if user.is_authenticated %}
+        <p>Hi {{ user.email }}</p>
+        <a href="{% url 'logout' %}">Log Out</a>
+    {% else %}
+        <p>You are not logged in.</p>
+        <a href="{% url 'login' %}">Log In</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+        
 {% endblock content %}
     
