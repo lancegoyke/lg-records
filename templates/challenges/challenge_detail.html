@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+
+
+{% block title %}
+    Challenge List
+{% endblock title %}
+    
+
+{% block content %}
+
+
+<h2 class="title">{{ challenge.name }}</h2>
+<div class="content">
+    <p>
+        {{ challenge.description }}
+    </p>
+
+    <a class="button is-primary is-light" href="{% url 'challenge_list' %}">Return to All Challenges</a>
+</div>
+
+{% endblock content %}

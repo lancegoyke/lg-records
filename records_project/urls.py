@@ -26,6 +26,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 
     # Local apps
+    path('challenges/', include('challenges.urls')),
     path('', include('pages.urls')),
-    path('', include('challenges.urls')),
 ]
