@@ -10,6 +10,11 @@ services:
             - POSTGRES_NAME=postgres
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
+            - EMAIL_HOST=smtp.sendgrid.net
+            - EMAIL_HOST_USER=apikey
+            - EMAIL_HOST_PASSWORD=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
+            - EMAIL_PORT=587
+            - EMAIL_USE_TLS=True
         volumes:
             - .:/code
         ports:
