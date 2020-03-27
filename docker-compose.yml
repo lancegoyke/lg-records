@@ -4,6 +4,12 @@ services:
     web:
         build: .
         command: python /code/manage.py runserver 0.0.0.0:8000
+        environment:
+            - SECRET_KEY=h#=6(vm+k4o$$9c#8tw=9nj6(*cg3pyg$$3cdfje*_f!gb8g8*c-
+            - DEBUG=1
+            - POSTGRES_NAME=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
         volumes:
             - .:/code
         ports:
