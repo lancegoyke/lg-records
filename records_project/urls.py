@@ -17,9 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    # Django admin
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/', include('users.urls')),
+
+    # Authentication (shouldn't need first two no mo')
+    # path('accounts/', include('django.contrib.auth.urls')),
+    # path('accounts/', include('users.urls')),
+    path('accounts/', include('allauth.urls')),
+
+    # Local apps
     path('', include('pages.urls')),
     path('', include('challenges.urls')),
 ]
