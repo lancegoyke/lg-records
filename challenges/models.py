@@ -41,7 +41,7 @@ class Record(models.Model):
     time_score = models.DurationField(
         help_text="How long did it take you? HH:MM:SS",
     )
-    notes = models.TextField()
+    notes = models.TextField(blank=True)
     date_recorded = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(
         get_user_model(),
