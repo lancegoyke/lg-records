@@ -8,12 +8,28 @@
 
 {% block content %}
 
+        <form class="content" action="{% url 'search_results' %}" method="get">
+            
+            <div class="field has-addons">
+                <div class="control">
+                    <input name="q" class="input is-medium" type="text" placeholder="Search" aria-label="Search">
+                </div>
+
+                <div class="control">
+                    <button class="button is-info is-medium" type="submit">
+                        Search
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
     <h2 class="title">Challenges</h2>
     
     {% for challenge in challenges %}
         <div class="content">
             <h3 class="title is-4">
-                <a href="{{ challenge.get_absolute_url }}">{{ challenge.name }}</a>
+                <a href="{{ challenge.get_absolute_url }}">{{ challenge.name|title }}</a>
             </h3>
         </div>
     {% endfor %}
