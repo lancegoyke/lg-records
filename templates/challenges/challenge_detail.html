@@ -15,6 +15,25 @@
         {{ challenge.description }}
     </p>
 
+    <h3>Challenge records</h3>
+
+    <div class="content">
+
+        
+        {% if challenge.records.all.count > 0 %}
+            
+            {% for record in challenge.records.all %}
+            <p>{{ record.user }} - {{ record.time_score }}</p>
+            {% endfor %}
+        
+        {% else %}
+
+            <p>If you hurry, you might be the first to set a record for this one!</p>
+        
+        {% endif %}
+        
+    </div>
+
     <a class="button is-primary is-light" href="{% url 'challenge_list' %}">Return to All Challenges</a>
 </div>
 
