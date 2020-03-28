@@ -12,6 +12,7 @@ psycopg2-binary = "==2.8.4"
 django-crispy-forms = "==1.9"
 django-allauth = "==0.41.0"
 django-autoslug = "==1.9.6"
+django-taggit = "==1.2.0"
 
 [requires]
 python_version = "3.8"

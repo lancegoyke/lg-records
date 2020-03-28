@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 from autoslug import AutoSlugField
+from taggit.managers import TaggableManager
 
 # Create your models here.
 class Challenge(models.Model):
@@ -15,6 +16,7 @@ class Challenge(models.Model):
         auto_now_add=True,
         editable=False,
     )
+    tags = TaggableManager()
 
     class Meta:
         """Meta definition for Challenge."""

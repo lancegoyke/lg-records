@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'taggit',
 
     # Local
     'users.apps.UsersConfig',
@@ -191,3 +192,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bulma'
+
+
+# django-taggit
+TAGGIT_CASE_INSENSITIVE = True
