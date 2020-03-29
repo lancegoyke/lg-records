@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -159,9 +160,20 @@ EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 
 
+# Message styling
+MESSAGE_TAGS = {
+    messages.DEBUG: 'is-warning',
+    messages.INFO: 'is-info',
+    messages.SUCCESS: 'is-success',
+    messages.WARNING: 'is-warning',
+    messages.ERROR: 'is-danger',
+}
+
+
 # User accounts
 AUTH_USER_MODEL = 'users.CustomUser'
 
+LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = 'home'
 ACCOUNT_LOGOUT_REDIRECT = 'home'
 

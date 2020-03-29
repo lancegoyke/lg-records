@@ -2,18 +2,37 @@
 
 
 {% block title %}
-    Challenge List
+    {{ challenge.name|title}}
 {% endblock title %}
     
 
 {% block content %}
 
 
-<h2 class="title">{{ challenge.name }}</h2>
+<h2 class="title">{{ challenge.name|title }}</h2>
 <div class="content">
+        
+    {% for line in challenge.description.splitlines %}
+        <p>{{ line }}</p>
+    {% endfor %}
+        
     <p>
-        {{ challenge.description }}
+    {% for tag in challenge.tags.all %}
+        <span class="tag is-info is-light">
+            {{ tag }}
+        </span>
+    {% endfor %}
     </p>
+
+    
+    {% if user.is_superuser %}
+    
+        <p>
+            <a class="button is-info" href="{% url 'challenge_update' challenge.slug %}">Update</a>
+        </p>
+    
+    {% endif %}
+        
 
     <h3>Challenge records</h3>
 

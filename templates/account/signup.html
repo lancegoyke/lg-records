@@ -1,5 +1,6 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
+{% load socialaccount %}
 
 {% block title %}
     Sign Up
@@ -8,10 +9,23 @@
 
 {% block content %}
 <h2 class="title">Sign Up</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button class="button is-primary" type="submit">Sign Up</button>
-</form>
+
+<div class="columns">
+    <div class="column is-one-third">
+        <form class="" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="has-addons">
+                <button class="button is-primary has-text-weight-bold" type="submit">
+                    Sign Up
+                </button>
+                <a class="button is-link has-text-weight-bold" href="{% provider_login_url 'google' %}">
+                    Log in with Google
+                </a>
+            </div>
+        </form>
+    </div><!-- .column -->
+    <div class="column"></div>
+</div><!-- .columns -->
 {% endblock content %}
     

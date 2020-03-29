@@ -1,0 +1,25 @@
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    Update - {{ challenge.name|title }}
+{% endblock title %}
+    
+
+{% block content %}
+
+
+<h2 class="title">Update - {{ challenge.name|title }}</h2>
+<div class="content">
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="button is-primary" type="submit">Update</button>
+    </form>
+
+</div>
+
+{% endblock content %}

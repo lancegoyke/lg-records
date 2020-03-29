@@ -11,16 +11,26 @@
     <h1 class="title">Records</h1>
     <p class="subtitle">Time to set some <strong>records!</strong></p>
 
-    <img class="cover-photo" src="{% static 'images/LANCENEONGREEN-blank.jpg' %}" alt="A headshot of Lance">
-    
-    {% if user.is_authenticated %}
-        <p>Hi {{ user.email }}</p>
-        <a href="{% url 'account_logout' %}">Log Out</a>
-    {% else %}
-        <p>You are not logged in.</p>
-        <a href="{% url 'account_login' %}">Log In</a>
-        <a href="{% url 'account_signup' %}">Sign Up</a>
-    {% endif %}
+    <div class="content">
+        
+        <div class="field is-grouped">
+
+            {% if user.is_superuser %}
+                <p class="control"><a class="button is-primary has-text-weight-bold" href="{% url 'challenge_create' %}">+ Add Challenge</a></p>
+            {% else %}
+                
+                {% if user.is_authenticated %}
+                    <p>Hi {{ user.email }}</p>
+                {% else %}
+                    <p class="control"><a class="button is-dark has-text-weight-bold" href="{% url 'account_login' %}">Log In</a></p>
+                    <p class="control"><a class="button is-primary has-text-weight-bold" href="{% url 'account_signup' %}">Sign Up</a></p>
+                {% endif %}
+                
+            {% endif %}
+
+        </div>
+        
+    </div>
         
 {% endblock content %}
     
