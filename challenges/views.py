@@ -24,12 +24,6 @@ def challenge_filtered_list(request):
     return render(request, 'challenges/challenge_filtered_list.html', {'filter': filter})
 
 
-@login_required()
-def record_filtered_list(request):
-    filter = RecordFilter(request.GET, queryset=Challenge.record_set.all().order_by('-date_created'))
-    return render(request, 'challenges/challenge_detail.html', {'filter': filter})
-
-
 class ChallengeCreateView(PermissionRequiredMixin, CreateView):
     model = Challenge
     template_name = "challenges/challenge_create.html"
