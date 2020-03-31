@@ -3,6 +3,7 @@ from django.test import Client, TestCase
 from django.urls import reverse
 
 from .models import Challenge, Record
+from .forms import RecordCreateForm
 
 # Create your tests here.
 class ChallengeTests(TestCase):
@@ -91,6 +92,27 @@ class ChallengeTests(TestCase):
         self.client.logout()
         response = self.client.get(self.challenge.get_absolute_url())
         self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/accounts/login/?next=/challenges/test-challenge')
+
+
+    def test_challenge_detail_view_record_create_form(self):
+        # make sure logged in user can submit record
+        self.client.login(email='recorduser@email.com', password='testpass123')
+        response = self.client.post(
+            self.challenge.get_absolute_url(),
+            kwargs={
+                'form': {
+                    'time_score': '01',
+                    'notes': 'I did it at the speed of light',
+                }
+            })
+        response = self.client.get(self.challenge.get_absolute_url())
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed('challenges/challenge_detail.html')
+        self.assertContains(response, 'recorduser')
+        
+        # make sure submitted record shows up afterwards
+        # TODO
 
 
     def test_challenge_update_view_for_logged_in_adminuser(self):

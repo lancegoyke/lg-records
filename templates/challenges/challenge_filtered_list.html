@@ -1,0 +1,40 @@
+{% extends '_base_fluid.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+Challenge List
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="columns">
+    <div class="column is-one-quarter">
+        <div class="notification">
+            <h3 class="title is-4">Filter</h3>
+            {% include 'challenges/_search.html' %}
+            <form action="" method="get">
+                {{ filter.form|crispy }}
+                <input class="button is-info" type="submit" />
+                <a class="button is-text" href="{% url 'challenge_filtered_list' %}">Clear</a>
+            </form>
+        </div><!-- .notification -->
+    </div><!-- .column -->
+
+    <div class="column">
+        <div class="container is-fluid">
+            <h2 class="title">Challenges</h2>
+            {% for challenge in filter.qs %}
+            <div class="content">
+                <h3 class="title is-4">
+                    <a href="{{ challenge.get_absolute_url }}">{{ challenge.name|title }}</a>
+                </h3>
+            </div><!-- .content -->
+            {% endfor %}
+        </div><!-- .container .is-fluid -->
+    </div><!-- .column -->
+</div><!-- .columns -->
+
+
+{% endblock content %}

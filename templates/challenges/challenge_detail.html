@@ -1,5 +1,5 @@
 {% extends '_base.html' %}
-
+{% load crispy_forms_tags %}
 
 {% block title %}
     {{ challenge.name|title}}
@@ -37,7 +37,6 @@
     <h3>Challenge records</h3>
 
     <div class="content">
-
         
         {% if challenge.records.all.count > 0 %}
             
@@ -56,4 +55,13 @@
     <a class="button is-primary is-light" href="{% url 'challenge_list' %}">Return to All Challenges</a>
 </div>
 
+
+<div class="content testing">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ record_create_form|crispy }}
+        <button class="button" type="submit">Add Score</button>
+    </form>
+
+</div>
 {% endblock content %}

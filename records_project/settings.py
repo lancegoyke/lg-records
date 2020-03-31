@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'taggit',
+    'django_filters',
 
     # Local
     'users.apps.UsersConfig',
