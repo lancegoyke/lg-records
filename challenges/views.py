@@ -7,6 +7,7 @@ from django.views.generic import (
 )
 from django.views.generic.detail import SingleObjectMixin
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, PermissionRequiredMixin
 )
@@ -17,31 +18,10 @@ from .models import Challenge, Record
 from .forms import RecordCreateForm
 
 # Create your views here.
-
-
-class ChallengeListView(LoginRequiredMixin, ListView):
-    model = Challenge
-    context_object_name = 'challenges'
-    template_name = 'challenges/challenge_list.html'
-    login_url = 'account_login'
-
-
+@login_required()
 def challenge_filtered_list(request):
     filter = ChallengeFilter(request.GET, queryset=Challenge.objects.all().order_by('-date_created'))
     return render(request, 'challenges/challenge_filtered_list.html', {'filter': filter})
-
-
-
-class SearchResultsListView(LoginRequiredMixin, ListView):
-    model = Challenge
-    context_object_name = 'challenges'
-    template_name = 'challenges/search_results.html'
-
-    def get_queryset(self):
-        query = self.request.GET.get('q')
-        return Challenge.objects.filter(
-            Q(name__icontains=query) | Q(name__icontains=query)
-        )
 
 
 class ChallengeCreateView(PermissionRequiredMixin, CreateView):
@@ -105,13 +85,11 @@ class RecordCreate(SingleObjectMixin, FormView):
         return super(RecordCreate, self).form_valid(form)
 
 
-
 class ChallengeDetail(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         view = ChallengeDisplay.as_view()
         return view(request, *args, **kwargs)
-
 
     def post(self, request, *args, **kwargs):
         view = RecordCreate.as_view()

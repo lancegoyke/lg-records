@@ -16,5 +16,5 @@ class ChallengeFilter(django_filters.FilterSet):
     class Meta:
         model = Challenge
         fields = {
-            'name': ['contains'],
+            'name': ['icontains'],
         }
