@@ -1,6 +1,6 @@
 import django_filters
 
-from .models import Challenge
+from .models import Challenge, Record
 
 class ChallengeFilter(django_filters.FilterSet):
     ordering = django_filters.OrderingFilter(
@@ -17,4 +17,22 @@ class ChallengeFilter(django_filters.FilterSet):
         model = Challenge
         fields = {
             'name': ['icontains'],
+        }
+
+
+class RecordFilter(django_filters.FilterSet):
+    ordering = django_filters.OrderingFilter(
+        choices=(
+            ('-date_recorded', 'Newest First'),
+            ('date_recorded', 'Oldest First'),
+        ),
+        fields = {
+            'date_recorded': 'Date',
+        }
+    )
+
+    class Meta:
+        model = Record
+        fields = {
+            'time_score': ['lt', 'gt'],
         }

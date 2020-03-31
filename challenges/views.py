@@ -13,7 +13,7 @@ from django.contrib.auth.mixins import (
 )
 from django.db.models import Q
 
-from .filters import ChallengeFilter
+from .filters import ChallengeFilter, RecordFilter
 from .models import Challenge, Record
 from .forms import RecordCreateForm
 
@@ -22,6 +22,12 @@ from .forms import RecordCreateForm
 def challenge_filtered_list(request):
     filter = ChallengeFilter(request.GET, queryset=Challenge.objects.all().order_by('-date_created'))
     return render(request, 'challenges/challenge_filtered_list.html', {'filter': filter})
+
+
+@login_required()
+def record_filtered_list(request):
+    filter = RecordFilter(request.GET, queryset=Challenge.record_set.all().order_by('-date_created'))
+    return render(request, 'challenges/challenge_detail.html', {'filter': filter})
 
 
 class ChallengeCreateView(PermissionRequiredMixin, CreateView):
@@ -56,6 +62,7 @@ class ChallengeDisplay(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['record_create_form'] = RecordCreateForm()
+        context['filter'] = RecordFilter(self.request.GET, queryset=self.get_object().records.order_by('-date_recorded'))
         return context
 
 

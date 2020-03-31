@@ -20,7 +20,7 @@
     </div><!-- .column -->
 
     <div class="column">
-        <h3 class="title is-4">The "{{ challenge.name|title }}" Challenge</h3>
+        <h3 class="title is-3">The "{{ challenge.name|title }}" Challenge</h3>
         <div class="content">
             {% for line in challenge.description.splitlines %}
             <p>{{ line }}</p>
@@ -50,25 +50,26 @@
             <form action="" method="get">
                 {{ filter.form|crispy }}
                 <input class="button is-info" type="submit" />
-                <a class="button is-text" href="{% url 'challenge_filtered_list' %}">Clear</a>
+                <a class="button is-text" href="{{ challenge.get_absolute_url }}">Clear</a>
             </form>
         </div><!-- .notification -->
     </div><!-- .column -->
 
     <div class="column">
-        <h3 class="title is-4">Submitted Scores</h3>
+
+        <h3 class="title is-5">Submitted Scores</h3>
 
         <div class="content">
 
             {% if challenge.records.all.count > 0 %}
 
-            {% for record in challenge.records.all %}
-            <p>{{ record.user }} - {{ record.time_score }}</p>
-            {% endfor %}
+                {% for record in filter.qs %}
+                    <p>{{ record.user }} - {{ record.time_score }}</p>
+                {% endfor %}
 
             {% else %}
 
-            <p>If you hurry, you might be the first to set a record for this one!</p>
+                <p>If you hurry, you might be the first to set a record for this one!</p>
 
             {% endif %}
 
