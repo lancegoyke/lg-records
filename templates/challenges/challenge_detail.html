@@ -2,81 +2,76 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-{{ challenge.name|title}}
+{{ challenge.name}}
 {% endblock title %}
 
 {% block content %}
 
 <div class="columns">
     <div class="column is-one-quarter">
-        <div class="notification is-warning">
-            <h3 class="title is-4">Submit a Score</h3>
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ record_create_form|crispy }}
-                <button class="button" type="submit">Add Score</button>
-            </form>
-        </div><!-- .content -->
+        <div class="section">
+            <div class="notification is-warning">
+                <h3 class="title is-4">Submit a Score</h3>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ record_create_form|crispy }}
+                    <button class="button is-white" type="submit">Add Score</button>
+                </form>
+            </div><!-- .notification -->
+        </div><!-- .section -->
+
+        <div class="section">
+            <div class="container">
+                <h3 class="title is-4">Sort scores</h3>
+                <form action="" method="get">
+                    {{ filter.form|crispy }}
+                    <input class="button is-info" type="submit" />
+                    <a class="button is-text" href="{{ challenge.get_absolute_url }}">Clear</a>
+                </form>
+            </div><!-- .container -->
+        </div><!-- .section -->
+
+        <div class="section">
+            <a class="button is-primary is-light" href="{% url 'challenge_filtered_list' %}">Return to All Challenges</a>
+        </div><!-- .section -->
     </div><!-- .column -->
 
     <div class="column">
-        <h3 class="title is-3">The "{{ challenge.name|title }}" Challenge</h3>
-        <div class="content">
-            {% for line in challenge.description.splitlines %}
-            <p>{{ line }}</p>
-            {% endfor %}
-
-            <p>
-                {% for tag in challenge.tags.all %}
-                <span class="tag is-info is-light">
-                    {{ tag }}
-                </span>
+        <div class="container is-fluid">
+            <h3 class="title is-3">"{{ challenge.name }}" Challenge</h3>
+            <div class="content">
+                {% for line in challenge.description.splitlines %}
+                    <p>{{ line }}</p>
                 {% endfor %}
-            </p>
+    
+                <p class="tags">
+                    {% for tag in challenge.tags.all %}
+                    <a class="tag is-info is-light" href="{% url 'challenge_tag_filtered_list' tag.slug %}">
+                        {{ tag }}
+                    </a>
+                    {% endfor %}
+                </p><!-- .tags -->
+    
+                {% if user.is_superuser %}
+                <p>
+                    <a class="button is-info" href="{% url 'challenge_update' challenge.slug %}">Update</a>
+                </p>
+                {% endif %}
+            </div><!-- .content -->
+        </div><!-- .container is-fluid -->
 
-            {% if user.is_superuser %}
-            <p>
-                <a class="button is-info" href="{% url 'challenge_update' challenge.slug %}">Update</a>
-            </p>
-            {% endif %}
-        </div><!-- .content -->
+        <div class="section">
+            <h3 class="title is-5">Submitted Scores</h3>
+            <div class="content">
+                {% if challenge.records.all.count > 0 %}
+                    {% for record in filter.qs %}
+                        <p>{{ record.user }} - {{ record.time_score }}</p>
+                    {% endfor %}
+                {% else %}
+                    <p>If you hurry, you might be the first to set a record for this one!</p>
+                {% endif %}
+            </div><!-- .content -->
+        </div><!-- .section -->
     </div><!-- .column -->
 </div><!-- .columns -->
-
-<div class="columns">
-    <div class="column is-one-quarter">
-        <div class="notification">
-            <h3 class="title is-4">Search and sort</h3>
-            <form action="" method="get">
-                {{ filter.form|crispy }}
-                <input class="button is-info" type="submit" />
-                <a class="button is-text" href="{{ challenge.get_absolute_url }}">Clear</a>
-            </form>
-        </div><!-- .notification -->
-    </div><!-- .column -->
-
-    <div class="column">
-
-        <h3 class="title is-5">Submitted Scores</h3>
-
-        <div class="content">
-
-            {% if challenge.records.all.count > 0 %}
-
-                {% for record in filter.qs %}
-                    <p>{{ record.user }} - {{ record.time_score }}</p>
-                {% endfor %}
-
-            {% else %}
-
-                <p>If you hurry, you might be the first to set a record for this one!</p>
-
-            {% endif %}
-
-        </div>
-    </div><!-- .column -->
-</div><!-- .columns -->
-
-<a class="button is-primary is-light" href="{% url 'challenge_filtered_list' %}">Return to All Challenges</a>
-
 {% endblock content %}

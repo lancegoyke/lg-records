@@ -10,14 +10,29 @@ Challenge List
 
 <div class="columns">
     <div class="column is-one-quarter">
-        <div class="notification">
-            <h3 class="title is-4">Search and sort</h3>
-            <form action="" method="get">
-                {{ filter.form|crispy }}
-                <input class="button is-info" type="submit" />
-                <a class="button is-text" href="{% url 'challenge_filtered_list' %}">Clear</a>
-            </form>
-        </div><!-- .notification -->
+        <div class="section">
+            <div class="container">
+                <h3 class="title is-4">Search and sort</h3>
+                <form action="" method="get">
+                    {{ filter.form|crispy }}
+                    <input class="button is-info" type="submit" />
+                    <a class="button is-text" href="{% url 'challenge_filtered_list' %}">Clear</a>
+                </form>
+            </div><!-- .container -->
+        </div><!-- .section -->
+
+        <div class="section">
+            <div class="container">
+                <h4 class="title is-5">Filter by tag</h4>
+                    <div class="tags">
+                        {% for tag in tag_list %}
+                            <a class="tag is-info is-light" href="{% url 'challenge_tag_filtered_list' tag.slug %}">
+                                {{ tag.name }}
+                            </a>
+                        {% endfor %}
+                    </div><!-- .tags -->
+            </div><!-- .container -->
+        </div><!-- .section -->
     </div><!-- .column -->
 
     <div class="column">
@@ -27,7 +42,7 @@ Challenge List
             {% for challenge in filter.qs %}
             <div class="content">
                 <h3 class="title is-4">
-                    <a href="{{ challenge.get_absolute_url }}">{{ challenge.name|title }}</a>
+                    <a href="{{ challenge.get_absolute_url }}">{{ challenge.name }}</a>
                 </h3>
             </div><!-- .content -->
             {% endfor %}

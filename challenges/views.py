@@ -13,21 +13,30 @@ from django.contrib.auth.mixins import (
 )
 from django.db.models import Q
 
+from taggit.models import Tag
+
 from .filters import ChallengeFilter, RecordFilter
 from .models import Challenge, Record
-from .forms import RecordCreateForm
+from .forms import ChallengeCreateForm, RecordCreateForm
 
 # Create your views here.
 @login_required()
-def challenge_filtered_list(request):
-    filter = ChallengeFilter(request.GET, queryset=Challenge.objects.all().order_by('-date_created'))
-    return render(request, 'challenges/challenge_filtered_list.html', {'filter': filter})
+def challenge_filtered_list(request, slug=None):
+    context = {}
+    context['tag_list'] = Tag.objects.all()
+    if slug is not None:
+        # use the tag in the URL to filter challenges
+        context['filter'] = ChallengeFilter(request.GET, queryset=Challenge.objects.filter(tags__slug__in=[slug]).order_by('-date_created'))
+    else:
+        # use all challenges
+        context['filter'] = ChallengeFilter(request.GET, queryset=Challenge.objects.all().order_by('-date_created'))
+    return render(request, 'challenges/challenge_filtered_list.html', context)
 
 
 class ChallengeCreateView(PermissionRequiredMixin, CreateView):
     model = Challenge
+    form_class = ChallengeCreateForm
     template_name = "challenges/challenge_create.html"
-    fields = ['name', 'description', 'tags',]
     permission_required = ('challenges.can_edit',)
     raise_exception = False
 
