@@ -62,10 +62,10 @@
 
         <div class="section">
             <h3 class="title is-5">Submitted Scores</h3>
-            <div class="content">
+            <div class="content is-family-monospace">
                 {% if challenge.records.all.count > 0 %}
                     {% for record in filter.qs %}
-                        <p>{{ record.user }} - {{ record.time_score }} [{{ record.date_recorded }}]</p>
+                        <p class="{% if user == record.user %}has-text-weight-bold{% endif %}">{{ record.user }} - {{ record.time_score }} [{{ record.date_recorded }}]</p>
                     {% endfor %}
                 {% else %}
                     <p>If you hurry, you might be the first to set a record for this one!</p>
