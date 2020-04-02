@@ -20,6 +20,8 @@
             </div><!-- .notification -->
         </div><!-- .section -->
 
+        
+        {% if top_score %}
         <div class="section">
             <div class="container">
                 <h3 class="title is-4">Sort scores</h3>
@@ -30,6 +32,7 @@
                 </form>
             </div><!-- .container -->
         </div><!-- .section -->
+        {% endif %}
 
         <div class="section">
             <a class="button is-primary is-light" href="{% url 'challenge_filtered_list' %}">Return to All Challenges</a>
@@ -40,37 +43,65 @@
         <div class="container is-fluid">
             <h3 class="title is-3">"{{ challenge.name }}" Challenge</h3>
             <div class="content">
-                {% for line in challenge.description.splitlines %}
-                    <p>{{ line }}</p>
-                {% endfor %}
-    
-                <p class="tags">
-                    {% for tag in challenge.tags.all %}
-                    <a class="tag is-info is-light" href="{% url 'challenge_tag_filtered_list' tag.slug %}">
-                        {{ tag }}
-                    </a>
-                    {% endfor %}
-                </p><!-- .tags -->
-    
-                {% if user.is_superuser %}
-                <p>
-                    <a class="button is-info" href="{% url 'challenge_update' challenge.slug %}">Update</a>
-                </p>
-                {% endif %}
+                <div class="columns">
+                    <div class="column">
+                        {% for line in challenge.description.splitlines %}
+                            <p>{{ line }}</p>
+                        {% endfor %}
+
+                        <p class="tags">
+                            {% for tag in challenge.tags.all %}
+                            <a class="tag is-info is-light" href="{% url 'challenge_tag_filtered_list' tag.slug %}">
+                                {{ tag }}
+                            </a>
+                            {% endfor %}
+                        </p><!-- .tags -->
+
+                        {% if user.is_superuser %}
+                            <p>
+                                <a class="button is-info" href="{% url 'challenge_update' challenge.slug %}">Update</a>
+                            </p>
+                        {% endif %}
+                    </div><!-- .column -->
+                    
+                    {% if top_score %}
+                        
+                        <div class="column">
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="notification {% if user_pr == top_score %}is-success{% else %}is-danger{% endif %}">
+                                        <h4 class="title is-5">Your PR</h4>
+                                        <p class="is-size-1 is-family-monospace">{{ user_pr }}</p>
+                                    </div><!-- .notification -->
+                                </div><!-- .column -->
+                                <div class="column">
+                                    <div class="notification is-dark">
+                                    <h4 class="title is-5">Top Score</h4>
+                                    <p class="is-size-1 is-family-monospace">{{ top_score }}</p>
+                                    </div><!-- .notification -->
+                                </div><!-- .column -->
+                            </div><!-- .columns -->
+                        </div><!-- .column -->
+
+                    {% endif %}
+                </div><!-- .columns -->
             </div><!-- .content -->
         </div><!-- .container is-fluid -->
 
         <div class="section">
             <h3 class="title is-5">Submitted Scores</h3>
-            <div class="content is-family-monospace">
-                {% if challenge.records.all.count > 0 %}
+            {% if top_score %}
+                <div class="content is-family-monospace">
                     {% for record in filter.qs %}
-                        <p class="{% if user == record.user %}has-text-weight-bold{% endif %}">{{ record.user }} - {{ record.time_score }} [{{ record.date_recorded }}]</p>
+                        <p class="{% if user == record.user %}has-text-weight-bold{% endif %}">{{ record.user }} - {{ record.time_score }} [{{ record.date_recorded|date:"SHORT_DATE_FORMAT" }}]</p>
                     {% endfor %}
-                {% else %}
+                </div><!-- .content .is-family-monospace -->
+            {% else %}
+                <div class="content is-family-primary">
+                    <p><em>No scores available.</em></p>
                     <p>If you hurry, you might be the first to set a record for this one!</p>
-                {% endif %}
-            </div><!-- .content -->
+                </div><!-- .content .is-family-primary-->
+            {% endif %}
         </div><!-- .section -->
     </div><!-- .column -->
 </div><!-- .columns -->
