@@ -12,7 +12,7 @@
         <div class="columns is-multiline">
             <div class="column is-12">
                 <div class="notification is-warning">
-                    <h3 class="title is-4">Submit a Score</h3>
+                    <h3 class="title is-3">Submit a Score</h3>
                     <form action="" method="POST">
                         {% csrf_token %}
                         {{ record_create_form|crispy }}
@@ -24,7 +24,7 @@
             {% if top_score %}
             <div class="column is-12">
                 <div class="container">
-                    <h3 class="title is-4">Sort scores</h3>
+                    <h3 class="title is-5">Sort scores</h3>
                     <form action="" method="get">
                         {{ filter.form|crispy }}
                         <input class="button is-info" type="submit" value="Submit" />
@@ -101,10 +101,25 @@
                     <div class="column is-12">
                         <h3 class="title is-5">Submitted Scores</h3>
                         {% if top_score %}
-                            <div class="content is-family-monospace">
-                                {% for record in filter.qs %}
-                                    <p class="{% if user == record.user %}has-text-weight-bold{% endif %}">{{ record.user }} - {{ record.time_score }} [{{ record.date_recorded|date:"SHORT_DATE_FORMAT" }}]</p>
-                                {% endfor %}
+                            <div class="content is-family-monospace is-size-7-mobile">
+                                <table class="table is-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>User</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for record in filter.qs %}
+                                        <tr class="{% if user == record.user %}is-selected{% endif %}">
+                                            <td>{{ record.time_score }}</td>
+                                            <td>{{ record.user }}</td>
+                                            <td>{{ record.date_recorded|date:"SHORT_DATE_FORMAT" }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
                             </div><!-- .content .is-family-monospace -->
                         {% else %}
                             <div class="content is-family-primary">
