@@ -68,8 +68,10 @@ class ChallengeDisplay(DetailView):
         context['filter'] = RecordFilter(self.request.GET, queryset=self.get_object().records.order_by('-date_recorded'))
         challenge_records = self.get_object().records.all()
         if challenge_records.exists():
-            context['user_pr'] = challenge_records.filter(user=self.request.user).order_by('time_score').first().time_score
             context['top_score'] = challenge_records.order_by('time_score').first().time_score
+            user_records = challenge_records.filter(user=self.request.user)
+            if user_records.exists():
+                context['user_pr'] = user_records.order_by('time_score').first().time_score
         return context
 
 

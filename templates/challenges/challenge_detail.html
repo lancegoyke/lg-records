@@ -1,4 +1,4 @@
-{% extends '_base_fluid.html' %}
+{% extends '_base.html' %}
 {% load crispy_forms_tags %}
 
 {% block title %}
@@ -9,42 +9,43 @@
 
 <div class="columns">
     <div class="column is-one-quarter">
-        <div class="section">
-            <div class="notification is-warning">
-                <h3 class="title is-4">Submit a Score</h3>
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    {{ record_create_form|crispy }}
-                    <button class="button is-white" type="submit">Add Score</button>
-                </form>
-            </div><!-- .notification -->
-        </div><!-- .section -->
+        <div class="columns is-multiline">
+            <div class="column is-12">
+                <div class="notification is-warning">
+                    <h3 class="title is-4">Submit a Score</h3>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{ record_create_form|crispy }}
+                        <button class="button is-white" type="submit">Add Score</button>
+                    </form>
+                </div><!-- .notification -->
+            </div><!-- .column -->
 
-        
-        {% if top_score %}
-        <div class="section">
-            <div class="container">
-                <h3 class="title is-4">Sort scores</h3>
-                <form action="" method="get">
-                    {{ filter.form|crispy }}
-                    <input class="button is-info" type="submit" value="Submit" />
-                    <a class="button is-text" href="{{ challenge.get_absolute_url }}">Clear</a>
-                </form>
-            </div><!-- .container -->
-        </div><!-- .section -->
-        {% endif %}
+            {% if top_score %}
+            <div class="column is-12">
+                <div class="container">
+                    <h3 class="title is-4">Sort scores</h3>
+                    <form action="" method="get">
+                        {{ filter.form|crispy }}
+                        <input class="button is-info" type="submit" value="Submit" />
+                        <a class="button is-text" href="{{ challenge.get_absolute_url }}">Clear</a>
+                    </form>
+                </div><!-- .container -->
+            </div><!-- .column -->
+            {% endif %}
+        </div><!-- .columns -->
 
-        <div class="section">
+        <div class="">
             <a class="button is-primary is-light" href="{% url 'challenge_filtered_list' %}">Return to All Challenges</a>
-        </div><!-- .section -->
+        </div><!-- . -->
     </div><!-- .column -->
 
     <div class="column">
-        <div class="container is-fluid">
+        <div class="container">
             <h3 class="title is-3">"{{ challenge.name }}" Challenge</h3>
             <div class="content">
-                <div class="columns">
-                    <div class="column">
+                <div class="columns is-desktop is-multiline">
+                    <div class="column is-one-third">
                         {% for line in challenge.description.splitlines %}
                             <p>{{ line }}</p>
                         {% endfor %}
@@ -64,45 +65,47 @@
                         {% endif %}
                     </div><!-- .column -->
                     
-                    {% if top_score %}
-                        
-                        <div class="column">
-                            <div class="columns">
-                                <div class="column">
-                                    <div class="notification {% if user_pr == top_score %}is-success{% else %}is-danger{% endif %}">
-                                        <h4 class="title is-5">Your PR</h4>
-                                        <p class="is-size-1 is-family-monospace">{{ user_pr }}</p>
-                                    </div><!-- .notification -->
-                                </div><!-- .column -->
-                                <div class="column">
-                                    <div class="notification is-dark">
-                                    <h4 class="title is-5">Top Score</h4>
-                                    <p class="is-size-1 is-family-monospace">{{ top_score }}</p>
-                                    </div><!-- .notification -->
-                                </div><!-- .column -->
-                            </div><!-- .columns -->
-                        </div><!-- .column -->
+                    <div class="column is-two-thirds">
+                        <div class="columns">
+                            {% if user_pr %}
+                            <div class="column">
+                                <div class="notification {% if user_pr == top_score %}is-success{% else %}is-danger{% endif %}">
+                                    <h4 class="title is-5">Your PR</h4>
+                                    <p class="is-size-2 is-size-3-mobile is-size-1-widescreen is-family-monospace">{{ user_pr }}</p>
+                                </div><!-- .notification -->
+                            </div><!-- .column -->
+                            {% endif %}
 
-                    {% endif %}
+                            {% if top_score %}
+                            <div class="column">
+                                <div class="notification is-dark">
+                                <h4 class="title is-5">Top Score</h4>
+                                <p class="is-size-2 is-size-3-mobile is-size-1-widescreen is-family-monospace">{{ top_score }}</p>
+                                </div><!-- .notification -->
+                            </div><!-- .column -->
+                            {% endif %}
+                        </div><!-- .columns -->
+                    </div><!-- .column -->
+
+                    <div class="column is-12">
+                        <h3 class="title is-5">Submitted Scores</h3>
+                        {% if top_score %}
+                            <div class="content is-family-monospace">
+                                {% for record in filter.qs %}
+                                    <p class="{% if user == record.user %}has-text-weight-bold{% endif %}">{{ record.user }} - {{ record.time_score }} [{{ record.date_recorded|date:"SHORT_DATE_FORMAT" }}]</p>
+                                {% endfor %}
+                            </div><!-- .content .is-family-monospace -->
+                        {% else %}
+                            <div class="content is-family-primary">
+                                <p><em>No scores available.</em></p>
+                                <p>If you hurry, you might be the first to set a record for this one!</p>
+                            </div><!-- .content .is-family-primary-->
+                        {% endif %}
+                    </div><!-- .column -->
+
                 </div><!-- .columns -->
             </div><!-- .content -->
-        </div><!-- .container is-fluid -->
-
-        <div class="section">
-            <h3 class="title is-5">Submitted Scores</h3>
-            {% if top_score %}
-                <div class="content is-family-monospace">
-                    {% for record in filter.qs %}
-                        <p class="{% if user == record.user %}has-text-weight-bold{% endif %}">{{ record.user }} - {{ record.time_score }} [{{ record.date_recorded|date:"SHORT_DATE_FORMAT" }}]</p>
-                    {% endfor %}
-                </div><!-- .content .is-family-monospace -->
-            {% else %}
-                <div class="content is-family-primary">
-                    <p><em>No scores available.</em></p>
-                    <p>If you hurry, you might be the first to set a record for this one!</p>
-                </div><!-- .content .is-family-primary-->
-            {% endif %}
-        </div><!-- .section -->
+        </div><!-- .container -->
     </div><!-- .column -->
 </div><!-- .columns -->
 {% endblock content %}
