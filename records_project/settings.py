@@ -175,7 +175,7 @@ MESSAGE_TAGS = {
 AUTH_USER_MODEL = 'users.CustomUser'
 
 LOGIN_URL = 'account_login'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'user_detail'
 ACCOUNT_LOGOUT_REDIRECT = 'home'
 
 SITE_ID = 1

@@ -1,0 +1,35 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+
+{% block title %}
+    Account
+{% endblock title %}
+
+
+{% block content %}
+<h2 class="title">Account</h2>
+
+    <div class="content">
+        <div class="tags has-addons">
+            <span class="tag is-medium is-dark">Username</span>
+            <span class="tag is-medium is-light">{{ user.username }}</span>
+        </div>
+        <div class="tags has-addons">
+            <span class="tag is-medium is-dark">Email</span>
+            <span class="tag is-medium is-light">{{ user.email }}</span>
+        </div>
+        <div class="tags has-addons">
+            <span class="tag is-medium is-dark">Sex</span>
+            <span class="tag is-medium is-light">{{ user.get_sex_display }}</span>
+        </div>
+        <div class="tags has-addons">
+            <span class="tag is-medium is-dark">Birthday</span>
+            <span class="tag is-medium is-light">{{ user.birthday }}</span>
+        </div>
+        <p>
+            <a class="button is-info" href="{% url 'user_update' user.id %}">Update Profile</a>
+        </p>
+    </div><!-- .content -->
+{% endblock content %}
+    

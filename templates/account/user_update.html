@@ -1,0 +1,26 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+
+{% block title %}
+    Update Account
+{% endblock title %}
+
+
+{% block content %}
+<h2 class="title">Update Account</h2>
+
+<div class="columns">
+    <div class="column is-one-third">
+        <form class="" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="button is-warning has-text-weight-bold" type="submit">
+                Update
+            </button>
+        </form>
+    </div><!-- .column -->
+    <div class="column"></div>
+</div><!-- .columns -->
+{% endblock content %}
+    
