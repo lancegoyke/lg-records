@@ -46,5 +46,5 @@ class RecordFilter(django_filters.FilterSet):
 
     class Meta:
         model = Record
-        fields = ['user']
+        fields = []
             
