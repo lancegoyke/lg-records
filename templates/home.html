@@ -1,38 +1,35 @@
 {% extends '_base.html' %}
 
-{% load static %}
-
 {% block title %}
-    Home
+    Home | {{ request.site.name }}
 {% endblock title %}
 
 
 {% block content %}
-    <h1 class="title">Records</h1>
-    <p class="subtitle">Time to set some <strong>records!</strong></p>
-
     <div class="content">
-        
-        <div class="field is-grouped">
-
-            {% if user.is_superuser %}
-            <p class="control"><a class="button is-warning has-text-weight-bold" href="{% url 'challenge_filtered_list' %}">View Challenges</a></p>    
-            <p class="control"><a class="button is-primary has-text-weight-bold" href="{% url 'challenge_create' %}">+ Add Challenge</a></p>
-            {% else %}
-                
-                {% if user.is_authenticated %}
-                    <p>Hi {{ user.email }}</p>
-                    <p class="control"><a class="button is-warning has-text-weight-bold" href="{% url 'challenge_filtered_list' %}">View Challenges</a></p>    
+    <h1 class="title">Records</h1>
+        <p class="subtitle">Time to set some <strong>records!</strong></p>
+            
+            <div class="field is-grouped">
+    
+                {% if user.is_superuser %}
+                <p class="control"><a class="button is-warning has-text-weight-bold" href="{% url 'challenge_filtered_list' %}">View Challenges</a></p>    
+                <p class="control"><a class="button is-primary has-text-weight-bold" href="{% url 'challenge_create' %}">+ Add Challenge</a></p>
                 {% else %}
-                    <p class="control"><a class="button is-dark has-text-weight-bold" href="{% url 'account_login' %}">Log In</a></p>
-                    <p class="control"><a class="button is-primary has-text-weight-bold" href="{% url 'account_signup' %}">Sign Up</a></p>
+                    
+                    {% if user.is_authenticated %}
+                        <p>Hi {{ user.email }}</p>
+                        <p class="control"><a class="button is-warning has-text-weight-bold" href="{% url 'challenge_filtered_list' %}">View Challenges</a></p>    
+                    {% else %}
+                        <p class="control"><a class="button is-dark has-text-weight-bold" href="{% url 'account_login' %}">Log In</a></p>
+                        <p class="control"><a class="button is-primary has-text-weight-bold" href="{% url 'account_signup' %}">Sign Up</a></p>
+                    {% endif %}
+                    
                 {% endif %}
-                
-            {% endif %}
-
-        </div>
-        
-    </div>
+    
+            </div>
+            
+        </div><!-- .content -->
         
 {% endblock content %}
     

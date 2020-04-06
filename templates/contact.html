@@ -1,0 +1,31 @@
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Contact | {% include '_site_title.html' %}
+{% endblock title %}
+
+
+{% block content %}
+<div class="columns">
+    <div class="column is-hidden-mobile"></div>
+
+    <div class="column is-three-fifths">
+
+        <h1 class="title is-1">Contact</h1>
+
+        <div class="content">
+            <form method="post" action="">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="button is-warning" type="submit">Send</button>
+            </form>
+        </div><!-- .content -->
+        
+    </div><!-- .column is-three-fifths -->
+    
+    <div class="column is-hidden-mobile"></div>
+</div><!-- .columns -->
+{% endblock content %}
+    
