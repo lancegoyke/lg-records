@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DEBUG', default=0))
 
-ALLOWED_HOSTS = ['.herokuapp.com', '.lancegoyke.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['lg-records.herokuapp.com', '.lancegoyke.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -226,6 +226,7 @@ if ENVIRONMENT == 'production':
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_REFERRER_POLICY = 'origin'
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Heroku
