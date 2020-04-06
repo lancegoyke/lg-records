@@ -5,6 +5,7 @@
 ### Mine ###
 .google
 docker-compose.yml
+docker-compose.prod.yml
 
 ### Django ###
 *.log
