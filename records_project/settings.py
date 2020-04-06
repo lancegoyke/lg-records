@@ -216,7 +216,7 @@ TAGGIT_CASE_INSENSITIVE = True
 
 ENVIRONMENT = os.environ.get('ENVIRONMENT', default='production')
 if ENVIRONMENT == 'production':
-    SECURE_BROWSER_XSS_FILTER = True
+    # SECURE_BROWSER_XSS_FILTER = True
     # X_FRAME_OPTIONS = 'DENY'
     # SECURE_SSL_REDIRECT = True
     # SECURE_HSTS_SECONDS = 3600
