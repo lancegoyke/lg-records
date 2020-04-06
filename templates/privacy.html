@@ -1,0 +1,27 @@
+{% extends '_base.html' %}
+
+{% load static %}
+
+{% block title %}
+    About
+{% endblock title %}
+
+
+{% block content %}
+<div class="columns">
+    <div class="column"></div>
+
+    <div class="column is-three-fifths">
+
+        <h1 class="title is-1">Privacy Policy</h1>
+
+        <div class="content">
+            {% include '_privacy_include.html' %}
+        </div><!-- .content -->
+        
+    </div><!-- .column is-three-fifths -->
+    
+    <div class="column"></div>
+</div><!-- .columns -->
+{% endblock content %}
+    
