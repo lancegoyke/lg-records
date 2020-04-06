@@ -3,7 +3,8 @@ version: '3.7'
 services:
     web:
         build: .
-        command: python /code/manage.py runserver 0.0.0.0:8000
+        # command: python /code/manage.py runserver 0.0.0.0:8000
+        command: gunicorn records_project.wsgi -b 0.0.0.0:8000
         environment:
             - SECRET_KEY=h#=6(vm+k4o$$9c#8tw=9nj6(*cg3pyg$$3cdfje*_f!gb8g8*c-
             - DEBUG=1
