@@ -28,4 +28,4 @@ urlpatterns = [
     # Local apps
     path('challenges/', include('challenges.urls')),
     path('', include('pages.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
