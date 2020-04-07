@@ -18,7 +18,7 @@ Home | {{ request.site.name }}
                         {% if user.is_superuser %}
                             <a class="button is-warning has-text-weight-bold"
                                     href="{% url 'challenge_filtered_list' %}">View Challenges</a>
-                            <a class="button is-primary has-text-weight-bold" href="{% url 'challenge_create' %}">+ Add
+                            <a class="button is-light has-text-weight-bold" href="{% url 'challenge_create' %}">+ Add
                                     Challenge</a>
                         {% else %}
                 
@@ -27,9 +27,9 @@ Home | {{ request.site.name }}
                             <a class="button is-warning has-text-weight-bold"
                                     href="{% url 'challenge_filtered_list' %}">View Challenges</a>
                             {% else %}
-                            <a class="button is-dark has-text-weight-bold" href="{% url 'account_login' %}">Log In</a>
+                            <a class="button is-light has-text-weight-bold" href="{% url 'account_login' %}">Log In</a>
                             
-                            <a class="button is-primary has-text-weight-bold" href="{% url 'account_signup' %}">Sign
+                            <a class="button is-warning has-text-weight-bold" href="{% url 'account_signup' %}">Sign
                                     Up</a>
                             {% endif %}
                 
