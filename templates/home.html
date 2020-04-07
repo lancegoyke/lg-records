@@ -48,11 +48,11 @@ Home | {{ request.site.name }}
             <h2 class="is-size-3">How to use this site</h2>
 
             <p>
-                First, make an account.
+                First, <a href="{% url 'account_signup' %}">make an account.</a>
             </p>
 
             <p>
-                Second, select a challenge from the list.
+                Second, select a challenge from <a href="{% url 'challenge_filtered_list' %}">the list.</a>
             </p>
 
             <p>
@@ -94,15 +94,15 @@ Home | {{ request.site.name }}
             <h2 class="is-size-3">How to contribute</h2>
 
             <p>
-                First and foremost, use the app.
+                Do your workouts and log your scores. That's pretty much it.
             </p>
 
             <p>
-                Second, send to anyone who wants help exercising. For now, this will be free.
+                And for now, all of this will be free. So send to your competitive friends stuck in their homes.
             </p>
 
             <p>
-                Third, feel free to volunteer any expertise: design, usability, engineering, workouts, you name it.
+                If you want to go above and beyond, feel free to volunteer any expertise: design, usability, engineering, workouts, wherever you see a weakness.
             </p>
 
             <p>
