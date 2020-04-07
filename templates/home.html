@@ -1,35 +1,114 @@
-{% extends '_base.html' %}
+{% extends '_base_homepage.html' %}
 
 {% block title %}
-    Home | {{ request.site.name }}
+Home | {{ request.site.name }}
 {% endblock title %}
 
 
 {% block content %}
-    <div class="content">
-    <h1 class="title">Records</h1>
-        <p class="subtitle">Time to set some <strong>records!</strong></p>
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-three-fifths is-offset-one-fifth">
+                <div class="notification is-black has-text-centered">
+                    <h1 class="title is-size-1">Time to set some <strong>records</strong>!</h1>
+                
+                    <div class="buttons is-grouped is-centered">
+                
+                        {% if user.is_superuser %}
+                            <a class="button is-warning has-text-weight-bold"
+                                    href="{% url 'challenge_filtered_list' %}">View Challenges</a>
+                            <a class="button is-primary has-text-weight-bold" href="{% url 'challenge_create' %}">+ Add
+                                    Challenge</a>
+                        {% else %}
+                
+                            {% if user.is_authenticated %}
+                            <p>Hi {{ user.email }}</p>
+                            <a class="button is-warning has-text-weight-bold"
+                                    href="{% url 'challenge_filtered_list' %}">View Challenges</a>
+                            {% else %}
+                            <a class="button is-dark has-text-weight-bold" href="{% url 'account_login' %}">Log In</a>
+                            
+                            <a class="button is-primary has-text-weight-bold" href="{% url 'account_signup' %}">Sign
+                                    Up</a>
+                            {% endif %}
+                
+                        {% endif %}
+                
+                    </div>
+                </div><!-- .notification -->
+            </div><!-- .column -->
+        </div><!-- .columns -->
+    </div>
+</section>
+
+<section class="section content container">
+    <div class="columns">
+        <div class="column is-5 box">
+            <h2 class="is-size-3">How to use this site</h2>
+
+            <p>
+                First, make an account.
+            </p>
+
+            <p>
+                Second, select a challenge from the list.
+            </p>
+
+            <p>
+                Third, submit your score.
+            </p>
+
+            <p>
+                Fourth, be persistent and beat your previous score.
+            </p>
+        </div><!-- .column -->
+    </div><!-- .columns -->
+
+    <div class="columns">
+        <div class="column is-5 is-offset-7 box">
+            <h2 class="is-size-3">What's this all about?</h2>
+
+            <p>
+                This site is here to give you fitness challenges to accomplish.
+            </p>
+
+            <p>
+                Pick a challenge and track how long it takes to complete.
+            </p>
+
+            <p>
+                Submit your score on the challenge's page to keep track of your performance and to see how you stack up
+                against others.
+            </p>
+
+            <p>
+                <a href="{% url 'about' %}">Learn more here.</a>
+            </p>
+        </div><!-- .column -->
+    </div><!-- .columns -->
+
             
-            <div class="field is-grouped">
-    
-                {% if user.is_superuser %}
-                <p class="control"><a class="button is-warning has-text-weight-bold" href="{% url 'challenge_filtered_list' %}">View Challenges</a></p>    
-                <p class="control"><a class="button is-primary has-text-weight-bold" href="{% url 'challenge_create' %}">+ Add Challenge</a></p>
-                {% else %}
-                    
-                    {% if user.is_authenticated %}
-                        <p>Hi {{ user.email }}</p>
-                        <p class="control"><a class="button is-warning has-text-weight-bold" href="{% url 'challenge_filtered_list' %}">View Challenges</a></p>    
-                    {% else %}
-                        <p class="control"><a class="button is-dark has-text-weight-bold" href="{% url 'account_login' %}">Log In</a></p>
-                        <p class="control"><a class="button is-primary has-text-weight-bold" href="{% url 'account_signup' %}">Sign Up</a></p>
-                    {% endif %}
-                    
-                {% endif %}
-    
-            </div>
-            
-        </div><!-- .content -->
-        
+    <div class="columns">
+        <div class="column is-5 box">
+            <h2 class="is-size-3">How to contribute</h2>
+
+            <p>
+                First and foremost, use the app.
+            </p>
+
+            <p>
+                Second, send to anyone who wants help exercising. For now, this will be free.
+            </p>
+
+            <p>
+                Third, feel free to volunteer any expertise: design, usability, engineering, workouts, you name it.
+            </p>
+
+            <p>
+                <a href="{% url 'contact' %}">Use the contact form to get ahold of me.</a>
+            </p>
+        </div><!-- .column -->
+    </div><!-- .columns -->
+</section>
 {% endblock content %}
-    
