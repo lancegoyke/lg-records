@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from django.contrib.messages import constants as messages
-import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -221,7 +220,7 @@ TAGGIT_CASE_INSENSITIVE = True
 
 ENVIRONMENT = os.environ.get('ENVIRONMENT', default='production')
 if ENVIRONMENT == 'production':
-    # SECURE_BROWSER_XSS_FILTER = True
+    SECURE_BROWSER_XSS_FILTER = True
     # X_FRAME_OPTIONS = 'DENY'
     # SECURE_SSL_REDIRECT = True
     # SECURE_HSTS_SECONDS = 3600
@@ -235,5 +234,6 @@ if ENVIRONMENT == 'production':
 
 
 # Heroku
+import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
