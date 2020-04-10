@@ -32,12 +32,12 @@ ALLOWED_HOSTS = ['lg-records.herokuapp.com', '.lancegoyke.com', 'localhost', '12
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'taggit',
     'django_filters',
+    'debug_toolbar',
 
     # Local
     'users.apps.UsersConfig',
@@ -67,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sites.middleware.CurrentSiteMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'records_project.urls'
@@ -217,6 +219,12 @@ CRISPY_TEMPLATE_PACK = 'bulma'
 
 # django-taggit
 TAGGIT_CASE_INSENSITIVE = True
+
+
+# django-debug-toolbar
+import socket
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
 
 
 ENVIRONMENT = os.environ.get('ENVIRONMENT', default='production')
