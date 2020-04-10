@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['lg-records.herokuapp.com', '.lancegoyke.com', 'localhost', '12
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
+    # 'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
