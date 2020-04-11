@@ -14,3 +14,6 @@ RUN pip install pipenv && pipenv install --system
 
 # copy project
 COPY . /code/
+
+# make staticfiles directory
+RUN mkdir /code/staticfiles/
