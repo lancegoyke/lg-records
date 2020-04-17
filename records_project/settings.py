@@ -146,13 +146,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # for referencing files with a URL
 STATIC_URL = '/static/'
-# where to find static files when local
+# where to find static files
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-# location of satatic files for production
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# location of static files for production
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(MEDIA_ROOT, 'static')
 # how Django should look for static file directories; below is default
 STATICFILES_FINDERS = [
     # defaults
