@@ -18,4 +18,4 @@ RUN pip install pipenv && pipenv install --system
 # copy project
 COPY . /code/
 
-RUN mkdir -p /media/static/
+RUN mkdir -p /code/media/static/
