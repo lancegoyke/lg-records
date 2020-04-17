@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DEBUG', default=0))
 
-ALLOWED_HOSTS = ['lg-records.herokuapp.com', '.herokuapp.com', '.lancegoyke.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['lg-records.herokuapp.com', '.herokuapp.com', 'record.lancegoyke.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'taggit',
     'django_filters',
     'debug_toolbar',
-    'storages',
 
     # Local
     'users.apps.UsersConfig',
@@ -160,16 +159,6 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-# Configure S3 bucket 'lg-records'
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_S3_FILE_OVERWRITE = False
-MEDIA_URL = 'https://%s/' % AWS_S3_CUSTOM_DOMAIN
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 # Email
