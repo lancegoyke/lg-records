@@ -5,7 +5,7 @@ build:
     docker:
         web: Dockerfile
 run:
-    web: gunicorn records_project.wsgi
+    web: gunicorn records_project.wsgi:application --bind 0.0.0.0:$PORT
 release:
     image: web
     command:
