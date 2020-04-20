@@ -13,10 +13,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from django.contrib.messages import constants as messages
 
-import django_heroku
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+ENVIRONMENT = os.environ.get('ENVIRONMENT', default='production')
 
 
 # Quick-start development settings - unsuitable for production
@@ -71,6 +71,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sites.middleware.CurrentSiteMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 CACHE_MIDDLEWARE_ALIAS = 'default'
@@ -96,6 +97,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'records_project.wsgi.application'
+
 
 
 # Database
@@ -149,15 +151,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-# for referencing files with a URL
 STATIC_URL = '/static/'
-# where to find static files
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-# location of static files for production
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# how Django should look for static file directories; below is default
 STATICFILES_FINDERS = [
-    # defaults
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
@@ -230,7 +227,6 @@ hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
 
 
-ENVIRONMENT = os.environ.get('ENVIRONMENT', default='production')
 if ENVIRONMENT == 'production':
     SECURE_BROWSER_XSS_FILTER = True
     X_FRAME_OPTIONS = 'DENY'
@@ -254,6 +250,3 @@ DATABASES['default'].update(db_from_env)
 import socket
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
-
-# Activate django-heroku
-django_heroku.settings(locals())
