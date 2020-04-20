@@ -7,6 +7,6 @@ build:
 release:
     image: web
     command:
-        - chmod u+x entrypoint_heroku.sh
+        - python manage.py collectstatic --noinput
 run:
-    web: ./entrypoint_heroku.sh
+    web: gunicorn records_project.wsgi
