@@ -150,15 +150,14 @@ STATIC_URL = '/static/'
 # where to find static files
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 # location of static files for production
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATIC_ROOT = os.path.join(MEDIA_ROOT, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # how Django should look for static file directories; below is default
 STATICFILES_FINDERS = [
     # defaults
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Email
