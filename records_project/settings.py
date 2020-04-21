@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'taggit',
     'django_filters',
     'debug_toolbar',
+    'storages',
 
     # Local
     'users.apps.UsersConfig',
@@ -150,14 +151,24 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+AWS_ACCESS_KEY_ID = 'AKIAXHZQLAUGM3NVHCN7'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'lg-records'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
+AWS_DEFAULT_ACL = None
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 # Email
