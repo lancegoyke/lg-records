@@ -151,25 +151,57 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+<<<<<<< HEAD
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+=======
+<<<<<<< HEAD
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+=======
+AWS_ACCESS_KEY_ID = 'AKIAXHZQLAUGM3NVHCN7'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'lg-records'
+>>>>>>> 04d80e73ab801e75feb83bad023e72da77ac2e48
+>>>>>>> 3d09cd6b4ece3fb610de84b70089398a5ee5084d
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 AWS_LOCATION = 'static'
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 3d09cd6b4ece3fb610de84b70089398a5ee5084d
 AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+<<<<<<< HEAD
+=======
+=======
+AWS_DEFAULT_ACL = None
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+>>>>>>> 04d80e73ab801e75feb83bad023e72da77ac2e48
+>>>>>>> 3d09cd6b4ece3fb610de84b70089398a5ee5084d
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+>>>>>>> 04d80e73ab801e75feb83bad023e72da77ac2e48
+>>>>>>> 3d09cd6b4ece3fb610de84b70089398a5ee5084d
 
 
 # Email
