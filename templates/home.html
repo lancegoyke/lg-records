@@ -23,7 +23,6 @@ Home | {{ request.site.name }}
                         {% else %}
                 
                             {% if user.is_authenticated %}
-                            <p>Hi {{ user.email }}</p>
                             <a class="button is-warning has-text-weight-bold"
                                     href="{% url 'challenge_filtered_list' %}">View Challenges</a>
                             {% else %}
