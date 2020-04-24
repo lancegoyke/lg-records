@@ -1,0 +1,17 @@
+{% extends "_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Social Network Login Failure" %}{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <h1 class="title">{% trans "Social Network Login Failure" %}</h1>
+    
+    <p>{% trans "An error occurred while attempting to login via your social network account." %}</p>
+    
+    <a class="button is-warning has-text-weight-bold" href="{% url 'account_signup' %}">Sign Up</a>
+    <a class="button is-light has-text-weight-bold" href="{% url 'account_login' %}">Log In</a>
+</div>
+{% endblock %}
