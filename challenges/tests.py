@@ -41,17 +41,16 @@ class ChallengeTests(TestCase):
 
     def test_challenge_list_view_for_logged_in_user(self):
         self.client.login(email='recorduser@email.com', password='testpass123')
-        response = self.client.get(reverse('challenge_list'))
+        response = self.client.get(reverse('challenge_filtered_list'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Test challenge'.title())
-        self.assertNotContains(response, 'Test challenge'.lower())
-        self.assertTemplateUsed(response, 'challenges/challenge_list.html')
+        self.assertContains(response, 'Test challenge')
+        self.assertTemplateUsed(response, 'challenges/challenge_filtered_list.html')
         self.assertContains(response, 'Search')
 
 
     def test_challenge_list_view_for_logged_out_user(self):
         self.client.logout()
-        response = self.client.get(reverse('challenge_list'))
+        response = self.client.get(reverse('challenge_filtered_list'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(
             response,
@@ -69,8 +68,7 @@ class ChallengeTests(TestCase):
         no_response = self.client.get('/challenges/12345/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(no_response.status_code, 404)
-        self.assertContains(response, 'Test challenge'.title())
-        self.assertNotContains(response, 'Test challenge'.lower())
+        self.assertContains(response, 'Test challenge')
         self.assertContains(response, 'This is a hard workout')
         self.assertContains(response, 'recorduser')
         self.assertContains(response, '4:26:44')
@@ -82,8 +80,7 @@ class ChallengeTests(TestCase):
         self.client.login(email='adminuser@email.com', password='testpass123')
         response = self.client.get(self.challenge.get_absolute_url())
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Test challenge'.title())
-        self.assertNotContains(response, 'Test challenge'.lower())
+        self.assertContains(response, 'Test challenge')
         self.assertContains(response, 'This is a hard workout')
         self.assertContains(response, 'Update')
 
