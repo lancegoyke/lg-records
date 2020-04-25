@@ -21,6 +21,7 @@ django-heroku = "*"
 django-debug-toolbar = "==2.0"
 boto3 = "*"
 django-storages = "*"
+newrelic = "==5.12.0.140"
 
 [requires]
 python_version = "3.8"
