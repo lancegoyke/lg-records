@@ -31,6 +31,13 @@
             <a class="navbar-item" href="{% url 'contact' %}">
                 Contact
             </a>
+            
+            {% if user.is_superuser %}
+            <a class="button is-warning has-text-weight-bold" href="{% url 'challenge_create' %}">
+                + New Challenge
+            </a>
+            {% endif %}
+                
         </div><!-- .navbar-start -->
 
         <div class="navbar-end">
