@@ -4,15 +4,16 @@ from django.urls import reverse
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
-# Create your models here.
+
 class CustomUser(AbstractUser):
-    
+
     class Sex(models.TextChoices):
-        UNKNOWN = 'U', _('Unknown')
+        UNKNOWN = 'U', _('Prefer not to say')
         FEMALE = 'F', _('Female')
         MALE = 'M', _('Male')
 
-    sex = models.CharField(max_length=1, choices=Sex.choices, default=Sex.UNKNOWN)
+    sex = models.CharField(
+        max_length=1, choices=Sex.choices, default=Sex.UNKNOWN)
     birthday = models.DateField(
         help_text="Please use the following format: <em>YYYY-MM-DD</em>.",
         blank=True,
