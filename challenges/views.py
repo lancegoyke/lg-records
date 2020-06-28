@@ -47,6 +47,7 @@ class ChallengeCreateView(PermissionRequiredMixin, CreateView):
 
 class ChallengeUpdateView(PermissionRequiredMixin, UpdateView):
     model = Challenge
+    form_class = ChallengeCreateForm
     template_name = "challenges/challenge_update.html"
     fields = ['name', 'description', 'tags',]
     permission_required = ('challenges.can_edit',)
