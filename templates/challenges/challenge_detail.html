@@ -61,7 +61,6 @@
 
                         {% if user.is_superuser %}
                         <p>
-                            <a class="button is-info" href="{% url 'challenge_update' challenge.slug %}">Update</a>
                             <a class="button is-dark"
                                 href="{% url 'admin:challenges_challenge_change' challenge.id %}">Admin</a>
                         </p>

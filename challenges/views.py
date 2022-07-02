@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
 from django.views.generic import (
-    ListView, DetailView, CreateView, UpdateView, FormView
+    DetailView, CreateView, FormView
 )
 from django.views.generic.detail import SingleObjectMixin
 from django.contrib import messages
@@ -48,21 +48,6 @@ class ChallengeCreateView(PermissionRequiredMixin, CreateView):
         messages.error(
             self.request, "You don't have permission to create a challenge.")
         return super(ChallengeCreateView, self).handle_no_permission()
-
-
-class ChallengeUpdateView(PermissionRequiredMixin, UpdateView):
-    model = Challenge
-    form_class = ChallengeCreateForm
-    template_name = "challenges/challenge_update.html"
-    # fields = ['name', 'description', 'tags', ]
-    permission_required = ('challenges.can_edit',)
-    raise_exception = False
-    login_url = 'account_login'
-
-    def handle_no_permission(self):
-        messages.error(
-            self.request, "You don't have permission to update a challenge.")
-        return super(ChallengeUpdateView, self).handle_no_permission()
 
 
 class ChallengeDisplay(DetailView):

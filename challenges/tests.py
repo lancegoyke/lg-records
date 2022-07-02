@@ -82,7 +82,6 @@ class ChallengeTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Test challenge')
         self.assertContains(response, 'This is a hard workout')
-        self.assertContains(response, 'Update')
 
 
     def test_challenge_detail_view_for_logged_out_user(self):
@@ -110,23 +109,6 @@ class ChallengeTests(TestCase):
         
         # make sure submitted record shows up afterwards
         # TODO
-
-
-    def test_challenge_update_view_for_logged_in_adminuser(self):
-        self.client.login(email='adminuser@email.com', password='testpass123')
-        response = self.client.get(reverse('challenge_update', kwargs={"slug":self.challenge.slug}))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Test challenge'.title())
-        self.assertContains(response, 'This is a hard workout')
-        self.assertNotContains(response, 'Test challenge'.lower())
-        self.assertTemplateUsed(response, 'challenges/challenge_update.html')
-        self.assertContains(response, 'Update')
-
-
-    def test_challenge_update_view_for_logged_in_user(self):
-        self.client.login(email='recorduser@email.com', password='testpass123')
-        response = self.client.get(reverse('challenge_update', kwargs={"slug":self.challenge.slug}))
-        self.assertEqual(response.status_code, 403)
 
 
     def test_challenge_create_view_for_logged_in_adminuser(self):
