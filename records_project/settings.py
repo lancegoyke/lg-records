@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     # 3rd party
     'crispy_forms',
+    'crispy_bulma',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -57,7 +58,6 @@ INSTALLED_APPS = [
     # Local
     'users.apps.UsersConfig',
     'challenges.apps.ChallengesConfig',
-    'mybulmatags.apps.MybulmatagsConfig',
 ]
 
 MIDDLEWARE = [
@@ -224,6 +224,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = ('bulma',)
 CRISPY_TEMPLATE_PACK = 'bulma'
 
 

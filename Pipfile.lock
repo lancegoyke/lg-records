@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0a3ba1302a13cde50a806ce0096d0c250752b1c45cb3c12046fbed9dd9ebe50f"
+            "sha256": "2a94c1a0919d63da2687dfbe5c26c515661f9981cd7dfb5878ba4e20126cceca"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -267,6 +267,14 @@
             ],
             "index": "pypi",
             "version": "==7.1.0"
+        },
+        "crispy-bulma": {
+            "hashes": [
+                "sha256:010dadcff57741e40589d6fa9750c8f8902e3abc89fa2f6bb72a5a5063388ced",
+                "sha256:7894f1053041280ca5dc1f392d9abcfbffbbb3363175203251237e7ad764d919"
+            ],
+            "index": "pypi",
+            "version": "==0.8.1"
         },
         "cryptography": {
             "hashes": [

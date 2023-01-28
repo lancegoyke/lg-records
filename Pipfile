@@ -24,6 +24,7 @@ boto3 = "*"
 django-storages = "*"
 newrelic = "==7.4.0.172"
 coverage = "*"
+crispy-bulma = "*"
 
 [requires]
 python_version = "3.10"
