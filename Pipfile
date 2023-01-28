@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 pylint = "*"
+coverage = "*"
 
 [packages]
 django = "==4.0.5"
@@ -22,6 +23,7 @@ django-debug-toolbar = "==3.5.0"
 boto3 = "*"
 django-storages = "*"
 newrelic = "==7.4.0.172"
+coverage = "*"
 
 [requires]
-python_version = "3.9"
+python_version = "3.10"
