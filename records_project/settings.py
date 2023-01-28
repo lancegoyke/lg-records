@@ -231,6 +231,9 @@ CRISPY_TEMPLATE_PACK = 'bulma'
 TAGGIT_CASE_INSENSITIVE = True
 
 
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
 # django-debug-toolbar
 import socket
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
