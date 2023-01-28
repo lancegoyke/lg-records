@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     # Django admin
+    path('backside/', admin.site.urls),
     path('behind-the-scenes/', admin.site.urls),
 
     # Authentication (shouldn't need first two no mo')
