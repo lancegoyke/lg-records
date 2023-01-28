@@ -9,7 +9,7 @@ coverage = "*"
 
 [packages]
 django = "~=4.1"
-psycopg2-binary = "==2.9.3"
+psycopg2-binary = "~=2.9"
 django-crispy-forms = "==1.14.0"
 django-allauth = "~=0.52"
 django-autoslug = "==1.9.8"
