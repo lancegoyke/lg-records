@@ -22,7 +22,7 @@ django-heroku = "*"
 django-debug-toolbar = "~=3.8"
 boto3 = "*"
 django-storages = "*"
-newrelic = "==7.4.0.172"
+newrelic = "~=8.5"
 coverage = "*"
 crispy-bulma = "~=0.8"
 
