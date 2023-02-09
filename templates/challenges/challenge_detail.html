@@ -48,7 +48,7 @@
                 <div class="columns is-desktop is-multiline">
                     <div class="column is-one-third">
                         {% for line in challenge.description.splitlines %}
-                        <p>{{ line }}</p>
+                        <p>{{ line|safe }}</p>
                         {% endfor %}
 
                         <p class="tags">
