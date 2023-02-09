@@ -4,7 +4,7 @@ Compete with others and climb to the top of the leaderboard! 🚀
 
 I wrote this Django app to store metabolic workouts and keep track of how my clients were performing.
 
-I managed to keep it simple:
+## User Flow
 
 1. Sign up for an account
 2. View a workout in plain text
@@ -27,36 +27,43 @@ It's been surprisingly useful! You're welcome to use it!
 
 ## Local Development
 
-To spin up development server:
+First, set up environment variables:
 
-```
-sudo docker compose up -d --build
+```bash
+cp docker-compose.override.yml.example docker-compose.override.yml
+# then replace the values with working values
 ```
 
-To spin down development serve:
+To spin up Django development server:
 
+```bash
+docker compose up -d --build
 ```
-sudo docker compose down
+
+To spin down development server:
+
+```bash
+docker compose down
 ```
 
 The database will need to be set up as well:
 
-```
-sudo docker compose exec web python manage.py migrate
+```bash
+docker compose exec web python manage.py migrate
 ```
 
 ## Deploying for Production
 
 This project is deployed on heroku. You can push directly to heroku:
 
-```
+```bash
 heroku login
 git push heroku master
 ```
 
 The `heroku.yml` file runs two commands in the release phase:
 
-```
+```bash
 python manage.py migrate  # untested
 python manage.py collectstatic --noinput
 ```
