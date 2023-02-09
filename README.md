@@ -71,10 +71,14 @@ docker compose exec web python manage.py migrate
 
 ## Deploying for Production
 
-This project is deployed on heroku. You can push directly to heroku:
+This project is deployed on Heroku, but not configured to automatically deploy on pushes to GitHub. Instead, push directly to Heroku:
 
 ```bash
+# authenticate Heroku CLI
 heroku login
+# set `heroku` as a remote repository
+heroku git:remote -a lg-records
+# push directly to Heroku
 git push heroku master
 ```
 
