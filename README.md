@@ -52,6 +52,23 @@ The database will need to be set up as well:
 docker compose exec web python manage.py migrate
 ```
 
+To create an admin user:
+
+```bash
+docker compose exec web python manage.py createsuperuser
+```
+
+To login to the Django admin, visit http://127.0.0.1:8000/backside/
+
+Some functionality won't work unless you update the sites model at http://127.0.0.1:8000/backside/sites/site/1/change/
+
+If you ever add or update the Django models, you'll need to instruct Django to update the database with migrations:
+
+```bash
+docker compose exec web python manage.py makemigrations
+docker compose exec web python manage.py migrate
+```
+
 ## Deploying for Production
 
 This project is deployed on heroku. You can push directly to heroku:
