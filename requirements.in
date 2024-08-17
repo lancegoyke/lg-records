@@ -1,0 +1,24 @@
+# Packages from Pipfile [packages]
+django~=4.1
+psycopg2-binary~=2.9
+django-crispy-forms==1.14.0
+django-allauth~=0.52
+django-autoslug==1.9.8
+django-taggit==3.0.0
+django-filter==22.1
+whitenoise~=6.3.0
+gunicorn~=20.1
+dj-database-url~=1.2
+django-heroku
+django-debug-toolbar~=3.8
+boto3
+django-storages
+newrelic~=8.5
+crispy-bulma~=0.8
+
+# Packages from Pipfile [dev-packages]
+pylint
+coverage
+
+# Python version requirement
+# Requires Python 3.11
