@@ -19,6 +19,7 @@ crispy-bulma~=0.8
 # Packages from Pipfile [dev-packages]
 pylint
 coverage
+uv
 
 # Python version requirement
 # Requires Python 3.11

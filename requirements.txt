@@ -87,6 +87,8 @@ typing-extensions==4.12.2
     # via dj-database-url
 urllib3==2.2.2
     # via botocore
+uv==0.2.37
+    # via -r requirements.in
 whitenoise==6.3.0
     # via
     #   -r requirements.in
