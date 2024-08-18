@@ -2,7 +2,7 @@
 django~=4.1
 psycopg2-binary~=2.9
 django-crispy-forms==1.14.0
-django-allauth~=0.52
+django-allauth[socialaccount]~=0.52
 django-autoslug==1.9.8
 django-taggit==3.0.0
 django-filter==22.1
@@ -15,6 +15,7 @@ boto3
 django-storages
 newrelic~=8.5
 crispy-bulma~=0.8
+python-dotenv
 
 # Packages from Pipfile [dev-packages]
 pylint
