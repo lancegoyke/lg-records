@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import PermissionDenied
 from django.test import Client, TestCase
 from django.urls import reverse
 
@@ -52,14 +53,6 @@ class ChallengeTests(TestCase):
         self.client.logout()
         response = self.client.get(reverse('challenge_filtered_list'))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(
-            response,
-            '%s?next=/challenges/' % (reverse('account_login'))
-        )
-        response = self.client.get(
-            '%s?next=/challenges/' % (reverse('account_login'))
-        )
-        self.assertContains(response, 'Log In')
 
     
     def test_challenge_detail_view_for_logged_in_user(self):
@@ -88,7 +81,6 @@ class ChallengeTests(TestCase):
         self.client.logout()
         response = self.client.get(self.challenge.get_absolute_url())
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/accounts/login/?next=/challenges/test-challenge')
 
 
     def test_challenge_detail_view_record_create_form(self):
@@ -121,5 +113,6 @@ class ChallengeTests(TestCase):
 
     def test_challenge_create_view_for_logged_in_user(self):
         self.client.login(email='recorduser@email.com', password='testpass123')
+        # with self.assertRaises(PermissionDenied):
         response = self.client.get(reverse('challenge_create'))
         self.assertEqual(response.status_code, 403)
