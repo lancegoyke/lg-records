@@ -5,20 +5,17 @@ FROM python:3.11.9
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# install global dependencies
+RUN apt-get update && apt-get install -y libpq-dev gcc
+
 # user
 RUN useradd -ms /bin/bash django
 USER django
 
-
 # set work directory
 WORKDIR /code
 
-# install global dependencies
-USER root
-RUN apt-get update && apt-get install -y libpq-dev gcc
-
 # update path
-USER django
 ENV PATH="/home/django/.local/bin:${PATH}"
 ENV PYTHONPATH="/code:${PYTHONPATH}"
 
