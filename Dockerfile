@@ -17,15 +17,15 @@ USER django
 WORKDIR /code
 
 # update path
-ENV PATH="/home/django/.local/bin:${PATH}"
-ENV PYTHONPATH="/code:${PYTHONPATH}"
+ENV PATH="/home/django/.local/bin:/code/.venv/bin:$PATH"
+ENV PYTHONPATH="/code:$PYTHONPATH"
 
 # setup python environment
 COPY requirements.txt /code/
 RUN python -m venv /code/.venv
-RUN . /code/.venv/bin/activate && echo "activated virtual environment"
-RUN python -m pip install --upgrade pip
-RUN python -m pip install -r requirements.txt
+RUN . /code/.venv/bin/activate
+RUN /code/.venv/bin/pip install --upgrade pip
+RUN /code/.venv/bin/pip install -r requirements.txt
 
 # copy project
 COPY . /code/
