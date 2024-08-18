@@ -1,22 +1,22 @@
 # Packages from Pipfile [packages]
-django~=4.1
+django~=5.1
 psycopg2-binary~=2.9
-django-crispy-forms==1.14.0
-django-allauth[socialaccount]~=0.52
-django-autoslug==1.9.8
-django-taggit==3.0.0
-django-filter==22.1
-whitenoise~=6.3.0
-gunicorn~=20.1
-dj-database-url~=1.2
+django-crispy-forms
+django-allauth[socialaccount]
+django-autoslug
+django-taggit
+django-filter
+whitenoise
+gunicorn
+dj-database-url
 django-heroku
-django-debug-toolbar~=3.8
 boto3
 django-storages
-crispy-bulma~=0.8
+crispy-bulma
 python-dotenv
 
 # Packages from Pipfile [dev-packages]
+django-debug-toolbar
 pylint
 coverage
 uv
