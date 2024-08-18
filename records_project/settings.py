@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from django.contrib.messages import constants as messages
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -72,6 +77,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sites.middleware.CurrentSiteMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
     # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
@@ -254,11 +260,10 @@ if ENVIRONMENT == 'production':
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_REFERRER_POLICY = 'origin'
 
-
-# Heroku
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+    # Heroku
+    import dj_database_url
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
 
 # django-debug-toolbar
 import socket

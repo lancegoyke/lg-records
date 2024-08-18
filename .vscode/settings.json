@@ -1,4 +1,8 @@
 {
-    "python.pythonPath": "/home/lance/.local/share/virtualenvs/records-HbSZhntR/bin/python",
-    "python.formatting.provider": "black"
+  "python.pythonPath": "/home/lance/.local/share/virtualenvs/records-HbSZhntR/bin/python",
+  "python.formatting.provider": "black",
+  "workbench.colorCustomizations": {
+    "activityBar.foreground": "#00d1b2",
+    "activityBar.background": "#17201f"
+  }
 }
