@@ -13,7 +13,6 @@ django-heroku
 django-debug-toolbar~=3.8
 boto3
 django-storages
-newrelic~=8.5
 crispy-bulma~=0.8
 python-dotenv
 

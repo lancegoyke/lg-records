@@ -9,4 +9,4 @@ release:
     command:
         - python manage.py collectstatic --noinput
 run:
-    web: newrelic-admin run-program gunicorn records_project.wsgi
+    web: gunicorn records_project.wsgi
