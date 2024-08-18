@@ -9,9 +9,6 @@ ENV PYTHONUNBUFFERED 1
 RUN useradd -ms /bin/bash django
 USER django
 
-# update path
-ENV PATH="/home/django/.local/bin:${PATH}"
-ENV PYTHONPATH="/code:${PYTHONPATH}"
 
 # set work directory
 WORKDIR /code
@@ -20,9 +17,15 @@ WORKDIR /code
 USER root
 RUN apt-get update && apt-get install -y libpq-dev gcc
 
-# setup python environment
+# update path
 USER django
+ENV PATH="/home/django/.local/bin:${PATH}"
+ENV PYTHONPATH="/code:${PYTHONPATH}"
+
+# setup python environment
 COPY requirements.txt /code/
+# RUN python -m venv /code/.venv
+# RUN source /code/.venv/bin/activate
 RUN python -m pip install --upgrade pip
 RUN python -m pip install -r requirements.txt
 
