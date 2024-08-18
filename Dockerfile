@@ -23,7 +23,7 @@ ENV PYTHONPATH="/code:${PYTHONPATH}"
 # setup python environment
 COPY requirements.txt /code/
 RUN python -m venv /code/.venv
-RUN source /code/.venv/bin/activate
+RUN /code/.venv/bin/activate && echo "activated virtual environment"
 RUN python -m pip install --upgrade pip
 RUN python -m pip install -r requirements.txt
 
