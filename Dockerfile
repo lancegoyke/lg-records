@@ -11,6 +11,7 @@ USER django
 
 # update path
 ENV PATH="/home/django/.local/bin:${PATH}"
+ENV PYTHONPATH="/code:${PYTHONPATH}"
 
 # set work directory
 WORKDIR /code
