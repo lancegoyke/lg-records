@@ -15,13 +15,15 @@ ENV PATH="/home/django/.local/bin:${PATH}"
 # set work directory
 WORKDIR /code
 
-# install dependencies
+# install global dependencies
 USER root
 RUN apt-get update && apt-get install -y libpq-dev gcc
 
+# setup python environment
 USER django
 COPY requirements.txt /code/
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN python -m pip install --upgrade pip
+RUN python -m pip install -r requirements.txt
 
 # copy project
 COPY . /code/
