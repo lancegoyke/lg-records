@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -y libpq-dev gcc
 
 # user
 RUN useradd -ms /bin/bash django
-USER django
 RUN mkdir -p /code && chown django:django /code
+USER django
 
 # set work directory
 WORKDIR /code
