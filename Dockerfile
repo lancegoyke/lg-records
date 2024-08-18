@@ -9,6 +9,9 @@ ENV PYTHONUNBUFFERED 1
 RUN useradd -ms /bin/bash django
 USER django
 
+# update path
+ENV PATH="/home/django/.local/bin:${PATH}"
+
 # set work directory
 WORKDIR /code
 
