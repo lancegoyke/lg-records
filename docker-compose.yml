@@ -4,7 +4,6 @@ services:
   web:
     build: .
     command: python /code/manage.py runserver 0.0.0.0:8000
-    # command: newrelic-admin run-program gunicorn records_project.wsgi -b 0.0.0.0:8000
     environment:
       - DEBUG=1
       - ENVIRONMENT=development

@@ -69,8 +69,6 @@ jmespath==1.0.1
     #   botocore
 mccabe==0.7.0
     # via pylint
-newrelic==8.11.0
-    # via -r requirements.in
 oauthlib==3.2.2
     # via requests-oauthlib
 platformdirs==4.2.2
