@@ -1,6 +1,6 @@
 # Packages from Pipfile [packages]
 django~=5.1
-psycopg2-binary~=2.9
+psycopg[binary]
 django-crispy-forms
 django-allauth[socialaccount]
 django-autoslug
@@ -16,7 +16,7 @@ crispy-bulma
 python-dotenv
 
 # Packages from Pipfile [dev-packages]
-django-debug-toolbar
+django-debug-toolbar~=4.4
 pylint
 coverage
 uv
