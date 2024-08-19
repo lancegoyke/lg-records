@@ -6,10 +6,10 @@ from .models import Challenge, Record
 class RecordInline(admin.TabularInline):
     model = Record
 
+@admin.register(Challenge)
 class ChallengeAdmin(admin.ModelAdmin):
     inlines = [
         RecordInline,
     ]
     list_display = ('name', 'description', 'date_created',)
 
-admin.site.register(Challenge, ChallengeAdmin)
