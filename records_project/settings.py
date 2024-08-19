@@ -150,7 +150,6 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
 
 USE_TZ = True
 
@@ -168,7 +167,14 @@ AWS_LOCATION = 'static'
 AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": 'storages.backends.s3boto3.S3Boto3Storage',
+    },
+}
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
