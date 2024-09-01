@@ -4,15 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('users', '0001_initial'),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='customuser',
-            name='birthday',
-            field=models.DateField(blank=True, help_text='Please use the following format: <em>YYYY-MM-DD</em>.', null=True),
+            model_name="customuser",
+            name="birthday",
+            field=models.DateField(
+                blank=True,
+                help_text="Please use the following format: <em>YYYY-MM-DD</em>.",
+                null=True,
+            ),
         ),
     ]

@@ -5,16 +5,17 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('challenges', '0001_initial'),
+        ("challenges", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='challenge',
-            name='slug',
-            field=autoslug.fields.AutoSlugField(default='', editable=False, populate_from='name'),
+            model_name="challenge",
+            name="slug",
+            field=autoslug.fields.AutoSlugField(
+                default="", editable=False, populate_from="name"
+            ),
             preserve_default=False,
         ),
     ]

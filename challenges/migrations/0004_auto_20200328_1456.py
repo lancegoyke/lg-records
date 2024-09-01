@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('challenges', '0003_auto_20200327_1807'),
+        ("challenges", "0003_auto_20200327_1807"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='record',
-            name='notes',
+            model_name="record",
+            name="notes",
             field=models.TextField(blank=True),
         ),
         migrations.AlterField(
-            model_name='record',
-            name='time_score',
-            field=models.DurationField(help_text='How long did it take you? HH:MM:SS'),
+            model_name="record",
+            name="time_score",
+            field=models.DurationField(help_text="How long did it take you? HH:MM:SS"),
         ),
     ]
