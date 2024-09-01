@@ -13,8 +13,6 @@ from .filters import ChallengeFilter, RecordFilter
 from .forms import ChallengeCreateForm, RecordCreateForm
 from .models import Challenge
 
-# Create your views here.
-
 
 @login_required()
 def challenge_filtered_list(request, slug=None):
