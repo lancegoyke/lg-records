@@ -11,6 +11,19 @@ from challenges.models import Challenge, Record
 from users.models import CustomUser as User
 
 
+TAG_OPTIONS = [
+    "Strength",
+    "Endurance",
+    "Cardio",
+    "Flexibility",
+    "Balance",
+    "Agility",
+    "Speed",
+    "Power",
+    "Coordination",
+    "Accuracy",
+]
+
 RANDOM_USERS = [
     "John",
     "Emma",
@@ -113,6 +126,10 @@ class Command(BaseCommand):
             ]
         )
 
+    def _tag_challenges(self, challenges: list[Challenge]) -> None:
+        for challenge in challenges:
+            challenge.tags.add(*random.sample(TAG_OPTIONS, random.randint(1, 3)))
+
     def handle(self, *args, **kwargs):
         if kwargs["delete"]:
             User.objects.all().delete()
@@ -135,6 +152,7 @@ class Command(BaseCommand):
         self._create_superuser()
         self._create_users()
         challenges = self._create_challenges()
+        self._tag_challenges(challenges)
         self._create_records(challenges)
         self._create_social_app()
 
