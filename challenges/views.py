@@ -18,8 +18,7 @@ from .models import Challenge
 
 @login_required()
 def challenge_filtered_list(request, slug=None):
-    context = {}
-    context["tag_list"] = Tag.objects.all()
+    context = {"tag_list": Tag.objects.all()}
     if slug is not None:
         # use the tag in the URL to filter challenges
         context["filter"] = ChallengeFilter(
