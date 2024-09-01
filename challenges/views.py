@@ -7,12 +7,11 @@ from django.views.generic.detail import SingleObjectMixin
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.db.models import Q
 
 from taggit.models import Tag
 
 from .filters import ChallengeFilter, RecordFilter
-from .models import Challenge, Record
+from .models import Challenge
 from .forms import ChallengeCreateForm, RecordCreateForm
 
 # Create your views here.
