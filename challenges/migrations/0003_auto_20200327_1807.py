@@ -5,15 +5,18 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('challenges', '0002_challenge_slug'),
+        ("challenges", "0002_challenge_slug"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='record',
-            name='challenge',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='records', to='challenges.Challenge'),
+            model_name="record",
+            name="challenge",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="records",
+                to="challenges.Challenge",
+            ),
         ),
     ]

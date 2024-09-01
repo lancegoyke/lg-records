@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('challenges', '0005_challenge_tags'),
+        ("challenges", "0005_challenge_tags"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='record',
-            name='notes',
+            model_name="record",
+            name="notes",
             field=models.CharField(blank=True, max_length=200),
         ),
     ]

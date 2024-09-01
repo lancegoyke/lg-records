@@ -5,16 +5,20 @@ import taggit.managers
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('taggit', '0003_taggeditem_add_unique_index'),
-        ('challenges', '0004_auto_20200328_1456'),
+        ("taggit", "0003_taggeditem_add_unique_index"),
+        ("challenges", "0004_auto_20200328_1456"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='challenge',
-            name='tags',
-            field=taggit.managers.TaggableManager(help_text='A comma-separated list of tags.', through='taggit.TaggedItem', to='taggit.Tag', verbose_name='Tags'),
+            model_name="challenge",
+            name="tags",
+            field=taggit.managers.TaggableManager(
+                help_text="A comma-separated list of tags.",
+                through="taggit.TaggedItem",
+                to="taggit.Tag",
+                verbose_name="Tags",
+            ),
         ),
     ]
