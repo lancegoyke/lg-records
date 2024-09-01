@@ -1,8 +1,7 @@
-from django.db import models
-from django.contrib.auth import get_user_model
-from django.urls import reverse
-
 from autoslug import AutoSlugField
+from django.contrib.auth import get_user_model
+from django.db import models
+from django.urls import reverse
 from taggit.managers import TaggableManager
 
 

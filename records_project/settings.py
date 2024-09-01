@@ -14,9 +14,7 @@ import os
 import socket
 
 from django.contrib.messages import constants as messages
-
 from dotenv import load_dotenv
-
 
 load_dotenv()
 

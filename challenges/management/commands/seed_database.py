@@ -1,15 +1,13 @@
-from datetime import datetime, timedelta
 import random
+from datetime import datetime, timedelta
 from textwrap import dedent
 
-from django.core.management.base import BaseCommand, CommandParser
-from django.contrib.sites.models import Site
-
 from allauth.socialaccount.models import SocialApp
+from django.contrib.sites.models import Site
+from django.core.management.base import BaseCommand, CommandParser
 
 from challenges.models import Challenge, Record
 from users.models import CustomUser as User
-
 
 TAG_OPTIONS = [
     "Strength",

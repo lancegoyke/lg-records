@@ -1,18 +1,17 @@
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponseForbidden
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
-from django.views.generic import DetailView, CreateView, FormView
+from django.views.generic import CreateView, DetailView, FormView
 from django.views.generic.detail import SingleObjectMixin
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-
 from taggit.models import Tag
 
 from .filters import ChallengeFilter, RecordFilter
-from .models import Challenge
 from .forms import ChallengeCreateForm, RecordCreateForm
+from .models import Challenge
 
 # Create your views here.
 

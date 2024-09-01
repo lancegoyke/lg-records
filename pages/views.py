@@ -1,6 +1,6 @@
-from django.views.generic import TemplateView, FormView
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.views.generic import FormView, TemplateView
 
 from .forms import ContactForm
 
