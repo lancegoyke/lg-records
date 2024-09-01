@@ -1,25 +1,22 @@
 # Packages from Pipfile [packages]
 django~=5.1
-psycopg[binary]
-django-crispy-forms
+crispy-bulma
 django-allauth[socialaccount]
 django-autoslug
-django-taggit
+django-crispy-forms
 django-filter
-whitenoise
-gunicorn
-dj-database-url
 django-heroku
-boto3
-django-storages
-crispy-bulma
+django-storages[s3]
+django-taggit
+django-upgrade
+dj-database-url
+gunicorn
+psycopg[binary]
 python-dotenv
+whitenoise
 
 # Packages from Pipfile [dev-packages]
 django-debug-toolbar~=4.4
 pylint
 coverage
 uv
-
-# Python version requirement
-# Requires Python 3.11

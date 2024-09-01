@@ -5,7 +5,7 @@ asgiref==3.8.1
 astroid==3.2.4
     # via pylint
 boto3==1.35.0
-    # via -r requirements.in
+    # via django-storages
 botocore==1.35.0
     # via
     #   boto3
@@ -58,6 +58,8 @@ django-storages==1.14.4
     # via -r requirements.in
 django-taggit==6.0.0
     # via -r requirements.in
+django-upgrade==1.20.0
+    # via -r requirements.in
 gunicorn==23.0.0
     # via -r requirements.in
 idna==3.7
@@ -106,6 +108,8 @@ sqlparse==0.5.1
     # via
     #   django
     #   django-debug-toolbar
+tokenize-rt==6.0.0
+    # via django-upgrade
 tomlkit==0.13.2
     # via pylint
 typing-extensions==4.12.2
