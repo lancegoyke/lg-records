@@ -100,6 +100,8 @@ requests==2.32.3
     #   requests-oauthlib
 requests-oauthlib==2.0.0
     # via django-allauth
+ruff==0.6.3
+    # via -r requirements.in
 s3transfer==0.10.2
     # via boto3
 six==1.16.0

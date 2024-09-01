@@ -16,7 +16,8 @@ python-dotenv
 whitenoise
 
 # Packages from Pipfile [dev-packages]
+coverage
 django-debug-toolbar~=4.4
 pylint
-coverage
+ruff
 uv
