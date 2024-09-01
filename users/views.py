@@ -1,7 +1,7 @@
 from django.views import generic
 
-from .models import CustomUser
 from .forms import CustomUserChangeForm
+from .models import CustomUser
 
 
 class CustomUserDetailView(generic.TemplateView):
