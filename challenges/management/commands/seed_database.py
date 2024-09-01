@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import random
 from textwrap import dedent
 
@@ -6,8 +7,37 @@ from django.contrib.sites.models import Site
 
 from allauth.socialaccount.models import SocialApp
 
-from challenges.models import Challenge
+from challenges.models import Challenge, Record
 from users.models import CustomUser as User
+
+
+RANDOM_USERS = [
+    "John",
+    "Emma",
+    "Michael",
+    "Olivia",
+    "William",
+    "Ava",
+    "James",
+    "Isabella",
+    "Benjamin",
+    "Sophia",
+    "Mason",
+    "Mia",
+    "Elijah",
+    "Charlotte",
+    "Oliver",
+    "Amelia",
+    "Jacob",
+    "Harper",
+    "Lucas",
+    "Evelyn",
+    "Alexander",
+    "Abigail",
+    "Daniel",
+    "Emily",
+    "Matthew",
+]
 
 
 class Command(BaseCommand):
@@ -40,6 +70,24 @@ class Command(BaseCommand):
             challenges.append(challenge)
         return Challenge.objects.bulk_create(challenges)
 
+    def _create_records(self, challenges: list[Challenge]) -> list[Record]:
+        """Creates Record objects for each Challenge object."""
+        records = []
+        for challenge in challenges:
+            num_records = random.randint(5, 250)
+            records.extend(
+                Record(
+                    challenge=challenge,
+                    time_score=f"00:{random.randint(10, 35)}:{random.randint(0, 59)}",
+                    date_recorded=(
+                        datetime.now() - timedelta(days=random.randint(1, 30))
+                    ).date(),
+                    user=User.objects.order_by("?").first(),
+                )
+                for _ in range(num_records)
+            )
+        return Record.objects.bulk_create(records)
+
     def _create_social_app(self) -> None:
         """Creates a SocialApp object for the Django admin."""
         site = Site.objects.get_current()
@@ -58,19 +106,12 @@ class Command(BaseCommand):
         )
 
     def _create_users(self) -> list[User]:
-        num_users = 100
         return User.objects.bulk_create(
             [
-                User(username=self._rand_username(), password="testpass123")
-                for _ in range(num_users)
+                User(username=username.lower(), password="testpass123")
+                for username in RANDOM_USERS
             ]
         )
-
-    def _rand_username(self) -> str:
-        ALPHAS = "abcdefghijklmnopqrstuvwxyz"
-        ALPHAS += ALPHAS.upper()
-        NUMS = "1234567890"
-        return f"{random.choice(ALPHAS + NUMS)}{random.choice(ALPHAS + NUMS)}{random.choice(ALPHAS + NUMS)}{random.choice(ALPHAS + NUMS)}{random.choice(ALPHAS + NUMS)}"  # noqa
 
     def handle(self, *args, **kwargs):
         if kwargs["delete"]:
@@ -93,7 +134,8 @@ class Command(BaseCommand):
 
         self._create_superuser()
         self._create_users()
-        self._create_challenges()
+        challenges = self._create_challenges()
+        self._create_records(challenges)
         self._create_social_app()
 
         self.stdout.write(self.style.SUCCESS("Data created successfully"))
