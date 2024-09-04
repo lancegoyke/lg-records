@@ -13,13 +13,10 @@ from .filters import ChallengeFilter, RecordFilter
 from .forms import ChallengeCreateForm, RecordCreateForm
 from .models import Challenge
 
-# Create your views here.
-
 
 @login_required()
 def challenge_filtered_list(request, slug=None):
-    context = {}
-    context["tag_list"] = Tag.objects.all()
+    context = {"tag_list": Tag.objects.all()}
     if slug is not None:
         # use the tag in the URL to filter challenges
         context["filter"] = ChallengeFilter(
