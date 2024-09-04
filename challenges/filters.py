@@ -1,5 +1,5 @@
-
 import django_filters
+from django import forms
 
 from .models import Challenge, Record
 
@@ -41,6 +41,12 @@ class RecordFilter(django_filters.FilterSet):
             "time_score": "Fastest",
             "-time_score": "Slowest",
         },
+    )
+    username_filter = django_filters.CharFilter(
+        label="Username Filter",
+        field_name="user__username",
+        lookup_expr="icontains",
+        widget=forms.TextInput(attrs={"autocomplete": "off"}),
     )
 
     class Meta:
