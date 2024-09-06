@@ -5,6 +5,7 @@ from textwrap import dedent
 from allauth.socialaccount.models import SocialApp
 from django.contrib.sites.models import Site
 from django.core.management.base import BaseCommand, CommandParser
+from django.utils import timezone
 
 from challenges.models import Challenge, Record
 from users.models import CustomUser as User
@@ -90,14 +91,21 @@ class Command(BaseCommand):
                 Record(
                     challenge=challenge,
                     time_score=f"00:{random.randint(10, 35)}:{random.randint(0, 59)}",
-                    date_recorded=(
-                        datetime.now() - timedelta(days=random.randint(1, 30))
-                    ).date(),
                     user=User.objects.order_by("?").first(),
                 )
                 for _ in range(num_records)
             )
-        return Record.objects.bulk_create(records)
+        record_objs = Record.objects.bulk_create(records)
+
+        for record in record_objs:
+            naive_datetime = datetime.now() - timedelta(days=random.randint(0, 365))
+            aware_datetime = timezone.make_aware(
+                naive_datetime, timezone=timezone.get_current_timezone()
+            )
+            record.date_recorded = aware_datetime
+        Record.objects.bulk_update(record_objs, ["date_recorded"])
+
+        return record_objs
 
     def _create_social_app(self) -> None:
         """Creates a SocialApp object for the Django admin."""
