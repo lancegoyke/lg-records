@@ -179,11 +179,19 @@ STORAGES = {
         "BACKEND": "storages.backends.s3.S3Storage",
     },
 }
+if DEBUG:
+    STORAGES["staticfiles"]["BACKEND"] = (
+        "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+    )
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    STATIC_URL = "static/"
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "build"),
+)
 
 # Email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
