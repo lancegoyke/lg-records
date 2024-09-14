@@ -81,9 +81,9 @@ It builds them into the `build` directory which is listed in the Django settings
 
 To create a new file for a Django template:
 
-1. Create the new `index.ts` corresponding to the Django template
-2. Build the file with `bun build-js`
-3. Import the file into your Django template as `<script type="module" src="{% static 'app/template/index.js' %}">`
+1. Create the new `index.ts` inside the `src` directory corresponding to the Django template, e.g., `src/app/template/index.ts`
+2. Build the file into the `build` directory with `bun build-js`
+3. Import the built file into your Django template, e.g., `<script type="module" src="{% static 'app/template/index.js' %}">`
 
 ## Deploying for Production
 
