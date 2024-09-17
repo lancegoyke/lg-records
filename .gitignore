@@ -10,6 +10,9 @@ aws-variables.env
 .env
 .venv
 
+### JS/TS ###
+node_modules/
+
 ### Django ###
 *.log
 *.pot
