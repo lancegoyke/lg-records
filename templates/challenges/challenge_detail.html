@@ -1,5 +1,5 @@
 {% extends '_base.html' %}
-{% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}
 {{ challenge.name}} | {% include '_site_title.html' %}
@@ -8,35 +8,9 @@
 {% block content %}
 
 <div class="columns">
-    <div class="column is-one-quarter">
-        <div class="columns is-multiline">
-            <div class="column is-12">
-                <div class="notification is-warning">
-                    <h3 class="title is-3">Submit a Score</h3>
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        {{ record_create_form|crispy }}
-                        <button class="button is-white" type="submit">Add Score</button>
-                    </form>
-                </div><!-- .notification -->
-            </div><!-- .column .is-12 -->
+    {% include "challenges/sidebar.html" %}
 
-            {% if top_score %}
-            <div class="column is-12">
-                <div class="container">
-                    <h3 class="title is-5">Sort and Filter Scores</h3>
-                    <form action="" method="get">
-                        {{ filter.form|crispy }}
-                        <input class="button is-info" type="submit" value="Submit" />
-                        <a class="button is-text" href="{{ challenge.get_absolute_url }}">Clear</a>
-                    </form>
-                </div><!-- .container -->
-            </div><!-- .column -->
-            {% endif %}
-        </div><!-- .columns -->
-    </div><!-- .column -->
-
-    <div class="column">
+    <div class="column" id="main-content">
         <div class="container">
             <div style="margin-top: -20px;">
                 <a class="is-size-7" href="{% url 'challenge_filtered_list' %}">
@@ -87,7 +61,7 @@
 
                             {% if top_score %}
                             <div class="column">
-                                <div class="notification is-dark">
+                                <div class="notification is-info">
                                     <h4 class="title is-5">Top Score</h4>
                                     <p class="is-size-2 is-size-3-mobile is-size-1-widescreen is-family-monospace">
                                         {{ top_score }}
@@ -137,3 +111,7 @@
     </div><!-- .column -->
 </div><!-- .columns -->
 {% endblock content %}
+
+{% block javascript %}
+    <script type="module" src="{% static 'challenges/challengeDetail/index.js' %}"></script>
+{% endblock javascript %}

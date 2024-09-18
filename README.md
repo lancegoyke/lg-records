@@ -27,6 +27,8 @@ It's been surprisingly useful! You're welcome to use it!
 
 ## Local Development
 
+### TODO: Below Section is Outdated
+
 First, set up environment variables:
 
 ```bash
@@ -68,6 +70,20 @@ If you ever add or update the Django models, you'll need to instruct Django to u
 docker compose exec web python manage.py makemigrations
 docker compose exec web python manage.py migrate
 ```
+
+### Adding JavaScript or TypeScript
+
+The `build.js` file is used to build the TypeScript files. Bun bundles the files.
+
+The bundler searches for files in the `src` directory which end in `index.ts`.
+
+It builds them into the `build` directory which is listed in the Django settings file as a static files directory.
+
+To create a new file for a Django template:
+
+1. Create the new `index.ts` inside the `src` directory corresponding to the Django template, e.g., `src/app/template/index.ts`
+2. Build the file into the `build` directory with `bun build-js`
+3. Import the built file into your Django template, e.g., `<script type="module" src="{% static 'app/template/index.js' %}">`
 
 ## Deploying for Production
 
