@@ -20,7 +20,7 @@ coverage==7.6.1
     # via -r requirements.in
 crispy-bulma==0.11.0
     # via -r requirements.in
-cryptography==43.0.0
+cryptography==43.0.1
     # via pyjwt
 dill==0.3.8
     # via pylint
@@ -40,7 +40,7 @@ django==5.1
     #   django-heroku
     #   django-storages
     #   django-taggit
-django-allauth==64.1.0
+django-allauth[socialaccount]==64.1.0
     # via -r requirements.in
 django-autoslug==1.9.9
     # via -r requirements.in
@@ -54,7 +54,7 @@ django-filter==24.3
     # via -r requirements.in
 django-heroku==0.3.1
     # via -r requirements.in
-django-storages==1.14.4
+django-storages[s3]==1.14.4
     # via -r requirements.in
 django-taggit==6.0.0
     # via -r requirements.in
@@ -78,7 +78,7 @@ packaging==24.1
     # via gunicorn
 platformdirs==4.2.2
     # via pylint
-psycopg==3.2.1
+psycopg[binary]==3.2.1
     # via -r requirements.in
 psycopg-binary==3.2.1
     # via psycopg
@@ -86,7 +86,7 @@ psycopg2==2.9.9
     # via django-heroku
 pycparser==2.22
     # via cffi
-pyjwt==2.9.0
+pyjwt[crypto]==2.9.0
     # via django-allauth
 pylint==3.2.6
     # via -r requirements.in
