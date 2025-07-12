@@ -10,8 +10,6 @@ h3 {
 }
 
 .allauth-button-submit {
-    background: linear-gradient(135deg, #00d1b2 0%, #00b8a3 100%);
-    border: none;
     border-radius: 8px;
     margin-top: 1rem;
     width: 100%;
