@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import socket
 
+import dj_database_url
 from django.contrib.messages import constants as messages
 from dotenv import load_dotenv
 
@@ -22,7 +23,7 @@ load_dotenv()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ENVIRONMENT = os.environ.get("ENVIRONMENT", default="production")
+ENVIRONMENT = os.environ.get("ENVIRONMENT", default="development")
 
 
 # Quick-start development settings - unsuitable for production
@@ -115,14 +116,12 @@ WSGI_APPLICATION = "records_project.wsgi.application"
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("POSTGRES_NAME"),
-        "USER": os.environ.get("POSTGRES_USER"),
-        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
-        "HOST": "localhost",
-        "PORT": 5432,
-    }
+    "default": dj_database_url.config(
+        conn_max_age=500,
+        default=os.environ.get(
+            "DATABASE_URL", "postgres://postgres:postgres@localhost:5432/lg_records"
+        ),
+    )
 }
 
 
@@ -227,11 +226,11 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
+ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
+ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
+ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
+ACCOUNT_LOGIN_METHODS = ["email", "username"]
 ACCOUNT_SESSION_REMEMBER = True
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -274,9 +273,3 @@ if ENVIRONMENT == "production":
     CSRF_COOKIE_SECURE = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SECURE_REFERRER_POLICY = "origin"
-
-    # Heroku
-    import dj_database_url
-
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES["default"].update(db_from_env)

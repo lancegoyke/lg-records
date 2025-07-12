@@ -1,0 +1,22 @@
+{% extends "allauth/layouts/base.html" %}
+{% load i18n %}
+
+{% comment %}
+This layout is used for authentication pages like login, signup, password reset, etc.
+{% endcomment %}
+
+{% block body %}
+    {# Hide allauth navigation on entrance pages to keep them clean #}
+    {% block allauth_nav %}{% endblock allauth_nav %}
+    
+    <div class="columns is-centered is-mobile">
+        <div class="column is-one-quarter-desktop is-half-tablet is-10-mobile">
+            <div class="box has-text-centered allauth-box">
+                <div class="content">
+                    {% block inner_content %}
+                    {% endblock inner_content %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %} 

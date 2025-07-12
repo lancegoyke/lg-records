@@ -1,11 +1,12 @@
-from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.forms import TextInput
 
+from users.models import CustomUser
+
 
 class CustomUserCreationForm(UserCreationForm):
-    class Meta:
-        model = get_user_model()
+    class Meta(UserCreationForm.Meta):
+        model = CustomUser
         fields = (
             "email",
             "username",
@@ -15,8 +16,8 @@ class CustomUserCreationForm(UserCreationForm):
 class CustomUserChangeForm(UserChangeForm):
     password = None
 
-    class Meta:
-        model = get_user_model()
+    class Meta(UserChangeForm.Meta):
+        model = CustomUser
         fields = (
             "email",
             "username",
