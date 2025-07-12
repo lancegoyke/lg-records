@@ -1,3 +1,18 @@
 h3 {
     color: dodgerblue;
 }
+
+.allauth-box {
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.allauth-button-submit {
+    background: linear-gradient(135deg, #00d1b2 0%, #00b8a3 100%);
+    border: none;
+    border-radius: 8px;
+    margin-top: 1rem;
+    width: 100%;
+}
