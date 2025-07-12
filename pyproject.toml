@@ -20,10 +20,7 @@ dependencies = [
     "psycopg[binary]",
     "python-dotenv",
     "whitenoise",
-]
-
-[project.optional-dependencies]
-dev = [
+    # Previously optional dev dependencies
     "coverage",
     "django-debug-toolbar",
     "pylint",
