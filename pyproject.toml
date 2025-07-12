@@ -4,7 +4,7 @@ name = "lg-records"
 version = "0"
 description = "A leaderboard for workout records"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 dependencies = [
     "django~=5.1",
     "crispy-bulma",
