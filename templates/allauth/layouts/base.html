@@ -1,0 +1,54 @@
+{% extends "_base_homepage.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% block head_title %}
+    {% endblock head_title %} | {% include '_site_title.html' %}
+{% endblock title %}
+
+{% block content %}
+    {% block body %}
+        {# Account navigation menu - can be overridden in specific layouts #}
+        {% block allauth_nav %}
+            {% if user.is_authenticated %}
+                <div class="box mb-4">
+                    <div class="field is-grouped is-grouped-multiline">
+                        {% url 'account_email' as email_url_ %}
+                        {% if email_url_ %}
+                            <div class="control">
+                                <a href="{{ email_url_ }}" class="button is-light is-small">{% trans "Change Email" %}</a>
+                            </div>
+                        {% endif %}
+                        {% url 'account_change_password' as change_password_url_ %}
+                        {% if change_password_url_ %}
+                            <div class="control">
+                                <a href="{{ change_password_url_ }}" class="button is-light is-small">{% trans "Change Password" %}</a>
+                            </div>
+                        {% endif %}
+                        {% url 'socialaccount_connections' as connections_url_ %}
+                        {% if connections_url_ %}
+                            <div class="control">
+                                <a href="{{ connections_url_ }}" class="button is-light is-small">{% trans "Account Connections" %}</a>
+                            </div>
+                        {% endif %}
+                        {% url 'account_logout' as logout_url_ %}
+                        {% if logout_url_ %}
+                            <div class="control">
+                                <a href="{{ logout_url_ }}" class="button is-light is-small">{% trans "Sign Out" %}</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endblock allauth_nav %}
+        
+        {% block inner_content %}
+        {% endblock inner_content %}
+    {% endblock body %}
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+    {% block extra_body %}
+    {% endblock extra_body %}
+{% endblock javascript %} 
