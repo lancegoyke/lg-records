@@ -64,12 +64,15 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
     "taggit",
     "django_filters",
-    "debug_toolbar",
     "storages",
     # Local
     "users.apps.UsersConfig",
     "challenges.apps.ChallengesConfig",
 ]
+
+# Add debug toolbar only in development
+if DEBUG:
+    INSTALLED_APPS.append("debug_toolbar")
 
 MIDDLEWARE = [
     # 'django.middleware.cache.UpdateCacheMiddleware',
@@ -82,10 +85,13 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "allauth.account.middleware.AccountMiddleware",
     # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
+
+# Add debug toolbar middleware only in development
+if DEBUG:
+    MIDDLEWARE.insert(-1, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
 # CACHE_MIDDLEWARE_ALIAS = 'default'
 # CACHE_MIDDLEWARE_SECONDS = 604800
@@ -256,9 +262,10 @@ TAGGIT_CASE_INSENSITIVE = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# django-debug-toolbar
-hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-INTERNAL_IPS = [f"{ip[:-1]}1" for ip in ips]
+# django-debug-toolbar (only in development)
+if DEBUG:
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS = [f"{ip[:-1]}1" for ip in ips]
 
 
 if ENVIRONMENT == "production":
