@@ -19,7 +19,7 @@ class CustomUserAdmin(UserAdmin):
         "sex",
     ]
     fieldsets = (
-        (None, {"fields": ("username", "password")}),
+        (None, {"fields": ("username",)}),
         (
             _("Personal info"),
             {"fields": ("first_name", "last_name", "email", "birthday", "sex")},
@@ -44,7 +44,17 @@ class CustomUserAdmin(UserAdmin):
             None,
             {
                 "classes": ("wide",),
-                "fields": ("username", "email", "password", "password2"),
+                "fields": (
+                    "email",
+                    "username",
+                    "password1",
+                    "password2",
+                ),
             },
         ),
     )
+
+    # def formfield_for_dbfield(self, db_field, **kwargs):
+    #     if db_field.name == "password":
+    #         kwargs["widget"] = PasswordInput(attrs={"autocomplete": "new-password"})
+    #     return super().formfield_for_dbfield(db_field, **kwargs)
