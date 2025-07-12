@@ -9,6 +9,7 @@ docker-compose.prod.yml
 aws-variables.env
 .env
 .venv
+.DS_Store
 
 ### JS/TS ###
 node_modules/
